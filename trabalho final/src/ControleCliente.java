@@ -31,6 +31,10 @@ public class ControleCliente {
         JOptionPane.showMessageDialog(null, saida);
     }
     
+<<<<<<< HEAD
+    public static void main(String[] args) {
+        TelaCadastroCliente init = new TelaCadastroCliente();
+=======
     public void consultaCompras (String cpf, String dataInicial, String dataFinal){
         String saida = "CPF não encontrado.\n";
         int totalNotas;
@@ -45,5 +49,6 @@ public class ControleCliente {
                 break;
             }
         }
+>>>>>>> db340f6327b7c086474ad57c56edcfa7d1b3a84c
     }
 }
