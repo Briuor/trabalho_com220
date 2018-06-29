@@ -21,11 +21,10 @@ public class ControleCliente {
     }
     
     public void consultaCliente (String cpf){
-        String saida = "Cliente não encontrado.";
+        String saida = "Cliente não encontrado.\n";
         for (int i=0;i<clientes.size();i++){
             if (clientes.get(i).getCpf() == cpf){
-                saida = "CPF pesquisado: "+clientes.get(i).getCpf()+"\n" +"Nome: "+clientes.get(i).getNome()+"\n"+"Endereço: "+clientes.get(i).getEndereco()+"\n"+"Email: "+clientes.get(i).getEmail()+"\n";
-                JOptionPane.showMessageDialog(null, saida);
+                saida = "CPF pesquisado: "+clientes.get(i).getCpf()+"\n" +"\tNome: "+clientes.get(i).getNome()+"\n"+"\tEndereço: "+clientes.get(i).getEndereco()+"\n"+"\tEmail: "+clientes.get(i).getEmail()+"\n";
                 break;
             }
         }
@@ -33,7 +32,7 @@ public class ControleCliente {
     }
     
     public void consultaCompras (String cpf, String dataInicial, String dataFinal){
-        String saida = "CPF não encontrado.";
+        String saida = "CPF não encontrado.\n";
         int totalNotas;
         for (int i=0;i<clientes.size();i++){
             if (clientes.get(i).getCpf() == cpf){
@@ -42,6 +41,7 @@ public class ControleCliente {
                 for (int j=0;j<clientes.get(i).getNotas().size();j++){
                     saida += "Nota:\n"+"\tCódigo: "+clientes.get(i).getNotas().get(j).getCodigo()+"\tValor Total: "+clientes.get(i).getNotas().get(j).getValorTotalCompra()+"\n\n";
                 }
+                JOptionPane.showMessageDialog(null, saida);
                 break;
             }
         }
