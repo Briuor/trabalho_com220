@@ -32,5 +32,7 @@ public class ControleCliente {
         JOptionPane.showMessageDialog(null, retorno);
     }
     
-    public void consultaCompras
+    public static void main(String[] args) {
+        TelaCadastroCliente init = new TelaCadastroCliente();
+    }
 }
