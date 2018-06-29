@@ -51,7 +51,7 @@ public class TelaAdicionarProduto extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent evento) {
 
-            String codigo = textCodigo.getText();
+            int codigo = textCodigo.getText();
             String descricao = textCodigo.getText();
             double precoCompra = Double.parseDouble(textPrecoCompra.getText());
             double valorVenda = Double.parseDouble(textValorVenda.getText());
