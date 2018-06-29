@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -11,11 +13,21 @@ import java.awt.*;
  *
  * @author Aluno
  */
-public final class TelaCadastroCliente extends SpringUtilities {
+public final class TelaCadastroCliente extends SpringUtilities implements ActionListener{
     JFrame frameCadastroCliente = new JFrame("Cadastrar Cliente");
     JPanel panelFormCadastroCliente = new JPanel(new SpringLayout());
     JPanel panelButtonCadastrar = new JPanel();
     JPanel mainPanel = new JPanel(new BorderLayout());
+    
+    JLabel name = new JLabel("Nome: ", JLabel.TRAILING);
+    JTextField nameText = new JTextField(25);
+    JLabel adress = new JLabel("Endereço: ", JLabel.TRAILING);
+    JTextField adressText = new JTextField(25);
+    JLabel email = new JLabel("Email: ", JLabel.TRAILING);
+    JTextField emailText = new JTextField(25);
+    JLabel cpf = new JLabel("CPF: ", JLabel.TRAILING);
+    JTextField cpfText = new JTextField(25);
+    
     
     JButton createClient = new JButton("CADASTRAR");
 
@@ -23,26 +35,29 @@ public final class TelaCadastroCliente extends SpringUtilities {
         createClientWindow();
     }
     
-    
-    
     public void createClientWindow(){
+        createClient.addActionListener(this);
         
-        String[] labels = {"Nome: ", "Endereço: ", "Email: ", "CPF: "};
-        int numPairs = labels.length;
-        
-        for (int i = 0; i < numPairs; i++) {
-            JLabel l = new JLabel(labels[i], JLabel.TRAILING);
-            panelFormCadastroCliente.add(l);
-            JTextField textField = new JTextField(25);
-            l.setLabelFor(textField);
-            panelFormCadastroCliente.add(textField);
-        }
-        panelButtonCadastrar.add(createClient);
+            panelFormCadastroCliente.add(name);
+            name.setLabelFor(nameText);
+            panelFormCadastroCliente.add(nameText);
+            
+            panelFormCadastroCliente.add(adress);
+            name.setLabelFor(adressText);
+            panelFormCadastroCliente.add(adressText);
+            
+            panelFormCadastroCliente.add(email);
+            name.setLabelFor(emailText);
+            panelFormCadastroCliente.add(emailText);
+            
+            panelFormCadastroCliente.add(cpf);
+            name.setLabelFor(cpfText);
+            panelFormCadastroCliente.add(cpfText);
 
-        
+        panelButtonCadastrar.add(createClient);
         
         SpringUtilities.makeCompactGrid(panelFormCadastroCliente,
-                                numPairs, 2, //rows, cols
+                                4, 2, //rows, cols
                                 3, 3,        //initX, initY
                                 3, 3);       //xPad, yPad
         
@@ -54,4 +69,18 @@ public final class TelaCadastroCliente extends SpringUtilities {
         frameCadastroCliente.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameCadastroCliente.setVisible(true);
     }
+<<<<<<< HEAD
+
+    @Override
+    public void actionPerformed(ActionEvent ae) {
+        String name = nameText.getText();
+        String adress = adressText.getText();
+        String email = emailText.getText();
+        String cpf = cpfText.getText();
+        
+        ControleCliente Cliente = new ControleCliente();
+        Cliente.cadastraCliente(name, adress, email, cpf);
+    }
+=======
+>>>>>>> db340f6327b7c086474ad57c56edcfa7d1b3a84c
 }
