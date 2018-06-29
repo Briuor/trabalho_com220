@@ -15,24 +15,48 @@ import javax.swing.*;
  */
 public class TelaAdicionarProduto extends JFrame implements ActionListener{
     private ControleProduto controleProduto;
-    private JLabel labelCodigo, labelDescricao, labelPrecoCompra, labelValorVenda;
-    private JTextField textCodigo, textDescricao, textPrecoCompra, textValorVenda;
+    private JTextField textCodigo, textDescricao, textPrecoCompra, textValorVenda, textQuantidade;
     private JButton botaoAdicionar;
     
     public TelaAdicionarProduto()
     {
+        JTextField textCodigo = new JTextField("", 20);
+        JTextField textDescricao = new JTextField("", 20);
+        JTextField textPrecoCompra = new JTextField("", 20);
+        JTextField textValorVenda = new JTextField("", 20);
+        JTextField textQuantidade = new JTextField("", 20);
+        
+        botaoAdicionar = new JButton("Adicionar");
+        botaoAdicionar.addActionListener(this);
         
         JPanel p = new JPanel();
         p.add(new JLabel("Codigo: "));
         p.add(textCodigo);
         p.add(new JLabel("Descricao: "));
-        p.add(textCodigo);
-        p.add(new JLabel("preçoCompra: "));
-        p.add(textCodigo);
+        p.add(textDescricao);
+        p.add(new JLabel("preço De Compra: "));
+        p.add(textPrecoCompra);
+        p.add(new JLabel("Valor de Venda: "));
+        p.add(textValorVenda);
+        p.add(new JLabel("Quantidade: "));
+        p.add(textQuantidade);
+        p.add(botaoAdicionar);
+        
+        this.add(p);
+        this.pack();
+        this.setVisible(true);
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
     @Override
-    public void actionPerformed(ActionEvent ae) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void actionPerformed(ActionEvent evento) {
+
+            String codigo = textCodigo.getText();
+            String descricao = textCodigo.getText();
+            double precoCompra = Double.parseDouble(textPrecoCompra.getText());
+            double valorVenda = Double.parseDouble(textValorVenda.getText());
+            int quantidade = Integer.parseInt(textQuantidade.getText());
+
+            controleProduto.adicionarProduto(codigo, descricao, precoCompra, valorVenda, quantidade);
     }
 }
