@@ -69,7 +69,6 @@ public final class TelaCadastroCliente extends SpringUtilities implements Action
         frameCadastroCliente.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameCadastroCliente.setVisible(true);
     }
-<<<<<<< HEAD
 
     @Override
     public void actionPerformed(ActionEvent ae) {
@@ -81,6 +80,5 @@ public final class TelaCadastroCliente extends SpringUtilities implements Action
         ControleCliente Cliente = new ControleCliente();
         Cliente.cadastraCliente(name, adress, email, cpf);
     }
-=======
->>>>>>> db340f6327b7c086474ad57c56edcfa7d1b3a84c
+
 }
