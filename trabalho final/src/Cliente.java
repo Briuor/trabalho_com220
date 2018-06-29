@@ -18,6 +18,14 @@ public class Cliente {
     private String cpf;
     private ArrayList<Nota> notas = new ArrayList<>();
 
+    public ArrayList<Nota> getNotas() {
+        return notas;
+    }
+
+    public void setNotas(ArrayList<Nota> notas) {
+        this.notas = notas;
+    }
+
     public String getNome() {
         return nome;
     }

@@ -54,13 +54,4 @@ public final class TelaCadastroCliente extends SpringUtilities {
         frameCadastroCliente.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameCadastroCliente.setVisible(true);
     }
-
-    
-
-    public static void main(String[] args) {
-        TelaCadastroCliente init = new TelaCadastroCliente();
-    }
-
-    
-
 }
