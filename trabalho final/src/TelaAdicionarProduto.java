@@ -16,18 +16,22 @@ import javax.swing.*;
 public class TelaAdicionarProduto extends JFrame implements ActionListener{
     private ControleProduto controleProduto;
     private JTextField textCodigo, textDescricao, textPrecoCompra, textValorVenda, textQuantidade;
-    private JButton botaoAdicionar;
+    private JButton botaoAdicionar, botaoVoltar;
     
-    public TelaAdicionarProduto()
+
+    public TelaAdicionarProduto(ControleProduto controleProduto)
     {
-        JTextField textCodigo = new JTextField("", 20);
-        JTextField textDescricao = new JTextField("", 20);
-        JTextField textPrecoCompra = new JTextField("", 20);
-        JTextField textValorVenda = new JTextField("", 20);
-        JTextField textQuantidade = new JTextField("", 20);
+        this.controleProduto = controleProduto;
+        textCodigo = new JTextField("", 20);
+        textDescricao = new JTextField("", 20);
+        textPrecoCompra = new JTextField("", 20);
+        textValorVenda = new JTextField("", 20);
+        textQuantidade = new JTextField("", 20);
         
         botaoAdicionar = new JButton("Adicionar");
+        botaoVoltar = new JButton("Voltar");
         botaoAdicionar.addActionListener(this);
+        botaoVoltar.addActionListener(this);
         
         JPanel p = new JPanel();
         p.add(new JLabel("Codigo: "));
@@ -41,6 +45,7 @@ public class TelaAdicionarProduto extends JFrame implements ActionListener{
         p.add(new JLabel("Quantidade: "));
         p.add(textQuantidade);
         p.add(botaoAdicionar);
+        p.add(botaoVoltar);
         
         this.add(p);
         this.pack();
@@ -49,14 +54,19 @@ public class TelaAdicionarProduto extends JFrame implements ActionListener{
     }
 
     @Override
-    public void actionPerformed(ActionEvent evento) {
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == botaoAdicionar)
+        {
 
             int codigo = Integer.parseInt(textCodigo.getText());
             String descricao = textCodigo.getText();
             double precoCompra = Double.parseDouble(textPrecoCompra.getText());
             double valorVenda = Double.parseDouble(textValorVenda.getText());
             int quantidade = Integer.parseInt(textQuantidade.getText());
-
             controleProduto.adicionarProduto(codigo, descricao, precoCompra, valorVenda, quantidade);
+        }
+        else if(e.getSource() == botaoVoltar)
+            this.dispose();
+
     }
 }

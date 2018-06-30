@@ -13,26 +13,32 @@ import javax.swing.JOptionPane;
  * @author Aluno
  */
 public class ControleProduto {
-    private TelaAdicionarProduto telaAddProduto;
-    ArrayList <Produto> produtos = new ArrayList <>();
+    private ArrayList <Produto> produtos = new ArrayList <>();
     
     //Função que serve tanto para adicionar um produto que antes não existia no sistema, quanto para incrementar sua quantidade no estoque caso ele ja exista.
     public void adicionarProduto (int codigo, String descricao, double precoCompra, double valorVenda, int quantEstoque){
         //Primeiro Caso: se ele já existe:
-        for (int i=0;i<produtos.size();i++){ //Busca do produto para verificar se ele já existe
-            if (produtos.get(i).getCodigo()==codigo){ //Caso ele ja exista:
+        for (int i=0;i<produtos.size();i++){ 
+            //Busca do produto para verificar se ele já existe
+            //Caso ele ja exista:
+            if (produtos.get(i).getCodigo()==codigo){ 
                 int quantidadeEstoque = produtos.get(i).getQuantEstoque(); //Obtém-se a quantidade atual do estoque
                 produtos.get(i).setQuantEstoque(quantidadeEstoque+quantEstoque); //Acrescenta a quantidade desejada
                 return;
             }
+            //Se nao existe
         }
         //Segundo caso: adicionar um produto que antes não existia no sistema
+        System.console().writer().println("Produto Adicionado");
         produtos.add(new Produto(codigo, descricao, precoCompra, valorVenda, quantEstoque));
     }
     
     public void consultarProduto (int codigo){
         String saida = "Produto não encontrado.\n";
+        System.console().writer().println(codigo +"insrido");
+
         for (int i=0;i<produtos.size();i++){
+        System.console().writer().println(codigo + " e " +produtos.get(0).getCodigo());
             if (produtos.get(i).getCodigo() == codigo){
                 saida = "Código pesquisado: "+produtos.get(i).getCodigo()+"\n"+"\tEstoque: "+produtos.get(i).getQuantEstoque()+"\n"+"\tDescrição: "+produtos.get(i).getDescricao()+"\n"+"\tPreço de Venda: "+produtos.get(i).getValorDeVenda()+"\n";
                 break;
