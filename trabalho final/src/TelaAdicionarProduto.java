@@ -50,7 +50,7 @@ public class TelaAdicionarProduto extends JFrame implements ActionListener{
         this.add(p);
         this.pack();
         this.setVisible(true);
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     @Override

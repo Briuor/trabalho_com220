@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import java.io.Serializable;
 
 /**
  *
  * @author Aluno
  */
-public class Produto {
+public class Produto implements Serializable{
     private int codigo;
     private String descricao;
     private double precoDeCompra;

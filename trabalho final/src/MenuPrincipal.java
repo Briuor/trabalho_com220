@@ -21,12 +21,14 @@ public class MenuPrincipal extends JFrame implements ActionListener{
     private ControleProduto controleProduto;
     private ControleCliente controleCliente;
     private ControleNota controleNota;
+
     public void inicializaControles()
     {
         this.controleProduto = new ControleProduto();
         this.controleCliente = new ControleCliente();
         this.controleNota = new ControleNota();
     }
+
     public MenuPrincipal()
     {
         super("Trabalho Final");
@@ -65,11 +67,19 @@ public class MenuPrincipal extends JFrame implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        //Se clickou em adicionar Produtos
-        if(e.getSource() == botaoAdicionar) 
-         new TelaAdicionarProduto(controleProduto);
-        else if(e.getSource() == botaoConsultProd)
-         new TelaConsultarProduto(controleProduto);
+        try{
+            //Se clickou em adicionar Produtos
+            if(e.getSource() == botaoAdicionar) {
+             new TelaAdicionarProduto(controleProduto);
+             //controleProduto.gravarProdutos(); // Ta com problema, nao grava ultimo inserido
+            }
+
+            else if(e.getSource() == botaoConsultProd)
+             new TelaConsultarProduto(controleProduto);
+        }
+        catch(Exception exc){
+
+        }
 
     }
     
