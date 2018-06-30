@@ -1,11 +1,6 @@
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -18,16 +13,39 @@ import javax.swing.JTextField;
  * @author Gabriel
  */
 public class TelaInsercaoCPF extends JFrame implements ActionListener{
-    
-    public TelaInsercaoCPF()
+    private ControleCliente controleCliente;
+
+    private JTextField textCPF;
+    private JButton botaoSubmeter;
+
+    public TelaInsercaoCPF(ControleCliente controleCliente)
     {
+        this.controleCliente = controleCliente;
+        textCPF = new JTextField("", 20);
         
+        botaoSubmeter = new JButton("Submeter");
+        botaoSubmeter.addActionListener(this);
         
+        JPanel p = new JPanel();
+        p.add(new JLabel("Digite seu CPF: "));
+        p.add(textCPF);
+        p.add(botaoSubmeter);
+        
+        this.add(p);
+        this.pack();
+        this.setVisible(true);
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    	//Se cpf digitado valido chama tela Selecao produtos
+		if(controleCliente.validaCPF(textCPF.getText()) == true)
+			new TelaSelecaoProdutos(controleCliente);
+
+		//se invalido chama tela Cadastro Cliente
+		else
+    		new TelaCadastroCliente(controleCliente);
     }
     
 }

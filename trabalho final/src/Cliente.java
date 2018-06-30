@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import java.io.Serializable;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -11,7 +12,7 @@ import java.util.ArrayList;
  *
  * @author Aluno
  */
-public class Cliente {
+public class Cliente implements Serializable{
     private String nome;
     private String endereco;
     private String email;

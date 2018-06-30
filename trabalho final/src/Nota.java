@@ -1,6 +1,6 @@
 
-import java.util.ArrayList;
-
+import java.util.*;
+import java.text.*;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class Nota {
     private int codigo;
     private double valorTotalCompra;
-    private String DataEmissao;
+    private Date dataEmissao;
     private ArrayList<Produto> listaProduto = new ArrayList<>();
 
     public int getCodigo() {
@@ -33,12 +33,12 @@ public class Nota {
         this.valorTotalCompra = valorTotalCompra;
     }
 
-    public String getDataEmissao() {
-        return DataEmissao;
+    public Date getDataEmissao() {
+        return dataEmissao;
     }
 
-    public void setDataEmissao(String DataEmissao) {
-        this.DataEmissao = DataEmissao;
+    public void setDataEmissao(Date dataEmissao) {
+        this.dataEmissao = dataEmissao;
     }
 
     public ArrayList<Produto> getListaProduto() {
@@ -49,9 +49,9 @@ public class Nota {
         this.listaProduto = listaProduto;
     }
 
-    public Nota(int codigo, double valorTotalCompra, String DataEmissao) {
+    public Nota(int codigo, double valorTotalCompra, Date dataEmissao) {
         this.codigo = codigo;
         this.valorTotalCompra = valorTotalCompra;
-        this.DataEmissao = DataEmissao;
+        this.dataEmissao = dataEmissao;
     }
 }

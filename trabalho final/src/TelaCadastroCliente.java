@@ -14,6 +14,8 @@ import java.awt.event.ActionListener;
  * @author Aluno
  */
 public final class TelaCadastroCliente extends SpringUtilities implements ActionListener{
+    private ControleCliente controleCliente;
+
     JFrame frameCadastroCliente = new JFrame("Cadastrar Cliente");
     JPanel panelFormCadastroCliente = new JPanel(new SpringLayout());
     JPanel panelButtonCadastrar = new JPanel();
@@ -31,7 +33,8 @@ public final class TelaCadastroCliente extends SpringUtilities implements Action
     
     JButton createClient = new JButton("CADASTRAR");
 
-    public TelaCadastroCliente() {
+    public TelaCadastroCliente(ControleCliente controleCliente) {
+        this.controleCliente = controleCliente;
         createClientWindow();
     }
     
@@ -66,7 +69,7 @@ public final class TelaCadastroCliente extends SpringUtilities implements Action
         
         frameCadastroCliente.add(mainPanel);
         frameCadastroCliente.pack();
-        frameCadastroCliente.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frameCadastroCliente.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frameCadastroCliente.setVisible(true);
     }
 
@@ -77,8 +80,9 @@ public final class TelaCadastroCliente extends SpringUtilities implements Action
         String email = emailText.getText();
         String cpf = cpfText.getText();
         
-        ControleCliente Cliente = new ControleCliente();
-        Cliente.cadastraCliente(name, adress, email, cpf);
+        controleCliente.cadastraCliente(name, adress, email, cpf);
+        frameCadastroCliente.dispose(); // sai da tela e chama a de insercao
+        new TelaSelecaoProdutos(controleCliente);
     }
 
 }

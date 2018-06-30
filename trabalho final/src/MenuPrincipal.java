@@ -36,12 +36,10 @@ public class MenuPrincipal extends JFrame implements ActionListener{
         tabbedPane = new JTabbedPane();
         
         botaoConsultClient = new JButton("Consultar Cliente");
-        botaoEmitirNota = new JButton("Consultar Produto");
         botaoFaturProd = new JButton("Consultar Faturamento Produto");
         botaoFaturClient = new JButton("Consultar Cliente");
         botaoFaturPeriod = new JButton("Consultar Cliente");
         JPanel pConsultas = new JPanel();
-        pConsultas.add(botaoEmitirNota);
         pConsultas.add(botaoConsultClient);
         pConsultas.add(botaoFaturProd);
         pConsultas.add(botaoFaturClient);
@@ -49,15 +47,18 @@ public class MenuPrincipal extends JFrame implements ActionListener{
 
         botaoAdicionar = new JButton("Adicionar produto");
         botaoConsultProd = new JButton("Consultar produto");
+        botaoEmitirNota = new JButton("Emitir Nota");
         JPanel pOperacoes = new JPanel();
         pOperacoes.add(botaoAdicionar);
         pOperacoes.add(botaoConsultProd);
+        pOperacoes.add(botaoEmitirNota);
 
         tabbedPane.add("Inicio", pOperacoes); //add painel de operacoes
         tabbedPane.add("Financeiro", pConsultas);        //add painel de consultas
         
         botaoAdicionar.addActionListener(this);
         botaoConsultProd.addActionListener(this);
+        botaoEmitirNota.addActionListener(this);
         
         this.add(tabbedPane);
         this.pack();
@@ -68,14 +69,17 @@ public class MenuPrincipal extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         try{
-            //Se clickou em adicionar Produtos
-            if(e.getSource() == botaoAdicionar) {
+            //Se clicar em adicionar Produtos
+            if(e.getSource() == botaoAdicionar)
              new TelaAdicionarProduto(controleProduto);
-             //controleProduto.gravarProdutos(); // Ta com problema, nao grava ultimo inserido
-            }
-
+            
+            //Se clicar em Consutlar Produto
             else if(e.getSource() == botaoConsultProd)
              new TelaConsultarProduto(controleProduto);
+
+            //Se clicar em Emitir Nota
+            else if(e.getSource() == botaoEmitirNota)
+             new TelaInsercaoCPF(controleCliente);
         }
         catch(Exception exc){
 
