@@ -61,10 +61,9 @@ public class ControleProduto {
     
     public void consultarProduto (int codigo){
         String saida = "Produto não encontrado.\n";
-        System.console().writer().println(codigo +" inserido");
 
         for (int i=0;i<produtos.size();i++){
-        System.console().writer().println(codigo + " e " +produtos.get(0).getCodigo());
+            //System.console().writer().println(codigo + " e " +produtos.get(0).getCodigo());
             if (produtos.get(i).getCodigo() == codigo){
                 saida = "Código pesquisado: "+produtos.get(i).getCodigo()+"\n"+"\tEstoque: "+produtos.get(i).getQuantEstoque()+"\n"+"\tDescrição: "+produtos.get(i).getDescricao()+"\n"+"\tPreço de Venda: "+produtos.get(i).getValorDeVenda()+"\n";
                 break;
@@ -72,8 +71,32 @@ public class ControleProduto {
         }
         JOptionPane.showMessageDialog(null, saida);
     }
+
+    //Verifica se produto existe, se existe retorna true
+    public boolean produtoExiste(int codigo)
+    {
+        for (int i=0;i<produtos.size();i++)
+        {
+            if (produtos.get(i).getCodigo() == codigo)
+                return true;
+        }
+        return false;
+    }
+
+    //Retorna produto com o codigo passado pelo parametro
+    public Produto getProduto(int codigo)
+    {
+        for (int i=0;i<produtos.size();i++)
+        {
+            if (produtos.get(i).getCodigo() == codigo){
+                return produtos.get(i); 
+            }
+        }
+        return null;
+    }
     
-    public void gravarProdutos() throws Exception {
+    public void gravarProdutos() throws Exception 
+    {
         try {
             FileOutputStream arquivo = new FileOutputStream("produtos.ser");
             ObjectOutputStream out = new ObjectOutputStream(arquivo);
@@ -86,7 +109,8 @@ public class ControleProduto {
         }
     }
 
-    public void lerProdutos() throws Exception{
+    public void lerProdutos() throws Exception
+    {
         try {
             FileInputStream arquivo = new FileInputStream("produtos.ser");
             ObjectInputStream in = new ObjectInputStream(arquivo);

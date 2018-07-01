@@ -82,7 +82,7 @@ public final class TelaCadastroCliente extends SpringUtilities implements Action
         
         controleCliente.cadastraCliente(name, adress, email, cpf);
         frameCadastroCliente.dispose(); // sai da tela e chama a de insercao
-        new TelaSelecaoProdutos(controleCliente);
+        JOptionPane.showMessageDialog(null, "Cadastro feito com sucesso");
     }
 
 }

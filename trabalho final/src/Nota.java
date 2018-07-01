@@ -1,6 +1,7 @@
 
 import java.util.*;
 import java.text.*;
+import java.io.Serializable;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -11,7 +12,7 @@ import java.text.*;
  *
  * @author Aluno
  */
-public class Nota {
+public class Nota implements Serializable{
     private int codigo;
     private double valorTotalCompra;
     private Date dataEmissao;
@@ -53,5 +54,9 @@ public class Nota {
         this.codigo = codigo;
         this.valorTotalCompra = valorTotalCompra;
         this.dataEmissao = dataEmissao;
+    }
+
+    public Nota(){
+        
     }
 }

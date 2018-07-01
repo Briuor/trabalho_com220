@@ -24,11 +24,9 @@ public class ControleCliente {
             this.lerClientes(); // le arquivo e preenche array de produtos
             System.console().writer().println("arquivo clientes.ser lido");
         }
-        catch(Exception exc)
-        {
+        catch(Exception exc){
             System.console().writer().println("erro ao ler arquivo de clientes");
         }
-
     }
     
     public void cadastraCliente (String nome, String endereco, String email, String cpf){
@@ -66,7 +64,6 @@ public class ControleCliente {
         return false;
     }
 
-
     public void consultaCompras (String cpf, String dataInicial, String dataFinal){
         String saida = "CPF não encontrado.\n";
         int totalNotas;
@@ -81,6 +78,24 @@ public class ControleCliente {
                 break;
             }
         }
+    }
+
+    public void emitirNota(String cpf, Nota notaEmitida){
+        String produtosNota = "";
+        for (int i=0;i<clientes.size();i++)
+        {
+            //procura usuario pelo cpf e coloca nota emitida no array de notas dele
+            if (clientes.get(i).getCpf().equals(cpf))
+            {
+                clientes.get(i).getNotas().add(notaEmitida);
+            }
+        }
+        //MOSTRA INFORMACOES DA NOTA
+        for(int i = 0;i < notaEmitida.getListaProduto().size(); i++){
+            Produto produto = notaEmitida.getListaProduto().get(i);
+            produtosNota += "Codigo: " + produto.getCodigo() + "\n";
+        }
+        JOptionPane.showMessageDialog(null, produtosNota);
     }
 
     public void gravarClientes() throws Exception {
