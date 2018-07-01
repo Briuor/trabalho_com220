@@ -64,6 +64,7 @@ public class ControleCliente {
         return false;
     }
 
+    /*  COMENTADO, POIS USAREMOS O DATE AO INVES DE STRING DATA
     public void consultaCompras(String cpf, String dataInicial, String dataFinal) {
         String saida = "CPF não encontrado.\n";
         int totalNotas;
@@ -78,7 +79,7 @@ public class ControleCliente {
                 break;
             }
         }
-    }
+    }*/
 
     public void emitirNota(String cpf, Nota notaEmitida) {
         String produtosNota = "";
