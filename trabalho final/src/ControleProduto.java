@@ -24,8 +24,7 @@ public class ControleProduto {
             this.lerProdutos(); // le arquivo e preenche array de produtos
             System.console().writer().println("arquivo produtos.ser lido");
         }
-        catch(Exception exc)
-        {
+        catch(Exception exc){
             System.console().writer().println("erro ao ler arquivo");
         }
     }
@@ -93,6 +92,33 @@ public class ControleProduto {
             }
         }
         return null;
+    }
+
+    //Atualiza Estoque de produtos
+    public void atualizaEstoque(Nota nota){
+        Produto produtoNota;
+        int quantiEstoque;  // guarda quantidade de produto no estoque
+        //Para cada produto da nota atualiza o estoque
+        for(int i = 0;i < nota.getListaProduto().size(); i++)
+        {
+            produtoNota = nota.getListaProduto().get(i);
+            //Varre produtos existentes e compara com o da nota
+            for(int j = 0; j < produtos.size(); j++)
+            {
+                //Se sao iguais, retira quantidade do produto da nota do produto no estoque
+                if (produtoNota.getCodigo() == produtos.get(j).getCodigo()) 
+                {
+                    quantiEstoque = produtos.get(j).getQuantEstoque();//pega quantidade no estoque
+                    //retira do estoque
+                    System.console().writer().println(quantiEstoque +"-"+ produtoNota.getQuantEstoque());
+                    produtos.get(j).setQuantEstoque(quantiEstoque - produtoNota.getQuantEstoque());
+                    //Grava atualização
+                    try{
+                        this.gravarProdutos();
+                    } catch (Exception exc){}
+                }
+            }
+        }
     }
     
     public void gravarProdutos() throws Exception 

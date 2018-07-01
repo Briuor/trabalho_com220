@@ -15,14 +15,16 @@ import javax.swing.*;
 public class TelaInsercaoCPF extends JFrame implements ActionListener{
     private ControleCliente controleCliente;
     private ControleProduto controleProduto;
+    private ControleNota controleNota;
 
     private JTextField textCPF;
     private JButton botaoSubmeter;
 
-    public TelaInsercaoCPF(ControleCliente controleCliente, ControleProduto controleProduto)
+    public TelaInsercaoCPF(ControleCliente controleCliente, ControleProduto controleProduto, ControleNota controleNota)
     {
         this.controleCliente = controleCliente;
         this.controleProduto = controleProduto;
+        this.controleNota = controleNota;
         textCPF = new JTextField("", 20);
         
         botaoSubmeter = new JButton("Submeter");
@@ -44,7 +46,7 @@ public class TelaInsercaoCPF extends JFrame implements ActionListener{
     	//Se cpf digitado valido chama tela Selecao produtos
 		if(controleCliente.validaCPF(textCPF.getText()) == true){
 			// passa controladores de cliente e produto e cpf do usuario para saber qual usuario esta comprando
-			new TelaSelecaoProdutos(controleCliente, controleProduto, textCPF.getText()); 
+			new TelaSelecaoProdutos(controleCliente, controleProduto, controleNota, textCPF.getText()); 
 		}
 
 		//se invalido chama tela Cadastro Cliente

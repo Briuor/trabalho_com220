@@ -79,7 +79,7 @@ public class MenuPrincipal extends JFrame implements ActionListener{
 
             //Se clicar em Emitir Nota
             else if(e.getSource() == botaoEmitirNota)
-             new TelaInsercaoCPF(controleCliente, controleProduto);
+             new TelaInsercaoCPF(controleCliente, controleProduto, controleNota);
         }
         catch(Exception exc){
 

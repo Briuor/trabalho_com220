@@ -23,6 +23,14 @@ public class ControleCliente {
         try{
             this.lerClientes(); // le arquivo e preenche array de produtos
             System.console().writer().println("arquivo clientes.ser lido");
+            String clientesStr = "";
+            for (int i = 0;i < clientes.size() ;i++ ) {
+                clientesStr += "Nome: " + clientes.get(i).getNome() + "\ncpf: "
+                            + clientes.get(i).getCpf() + "\n";
+                for(int j = 0;j < clientes.get(i).getNotas().size(); j++)
+                    clientesStr += "Notas: " + clientes.get(i).getNotas().get(j).getCodigo()+"\n";
+            }
+            System.console().writer().println(clientesStr);
         }
         catch(Exception exc){
             System.console().writer().println("erro ao ler arquivo de clientes");
@@ -81,6 +89,8 @@ public class ControleCliente {
     }
 
     public void emitirNota(String cpf, Nota notaEmitida){
+
+        //--------VERIFICAR QUANTIDADE DE PRODUTOS NA NOTA < 10
         String produtosNota = "";
         for (int i=0;i<clientes.size();i++)
         {
@@ -95,7 +105,12 @@ public class ControleCliente {
             Produto produto = notaEmitida.getListaProduto().get(i);
             produtosNota += "Codigo: " + produto.getCodigo() + "\n";
         }
-        JOptionPane.showMessageDialog(null, produtosNota);
+        String info = "Codigo nota: " + notaEmitida.getCodigo()
+                    +"\nValor Total: " + notaEmitida.getValorTotalCompra() + "\nProdutos:\n";
+        JOptionPane.showMessageDialog(null, info + produtosNota);
+        //Grava cliente com nota
+        try{        this.gravarClientes();  }
+        catch(Exception exc){}
     }
 
     public void gravarClientes() throws Exception {

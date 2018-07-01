@@ -24,6 +24,13 @@ public class Produto implements Serializable{
         this.quantEstoque = quantEstoque;
     }
 
+    public Produto(Produto produto){
+        this.codigo = produto.getCodigo();
+        this.descricao = produto.getDescricao();
+        this.precoDeCompra = produto.getPrecoDeCompra();
+        this.valorDeVenda = produto.getValorDeVenda();
+        this.quantEstoque = produto.getQuantEstoque();
+    }
     public int getCodigo() {
         return codigo;
     }
