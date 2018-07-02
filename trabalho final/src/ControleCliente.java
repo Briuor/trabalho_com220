@@ -88,13 +88,13 @@ public class ControleCliente {
                         for (int k = 0; k < clientes.get(i).getNotas().get(j).getListaProduto().size(); k++) { // percorrendo o Array de produtos
                             saida += "NOTA " + clientes.get(i).getNotas().get(j).getCodigo() + "\n";
                             //codigo nome preçoUnitário preçoComQuantidade
-                            saida += "CÓDIGO\tQUANTIA\tPREÇO UNID\tTOTAL";
-                            saida += "\t" + clientes.get(i).getNotas().get(j).getListaProduto().get(k).getCodigo();
-                            saida += "\t" + clientes.get(i).getNotas().get(j).getListaProduto().get(k).getQuantEstoque();
-                            saida += "\t" + clientes.get(i).getNotas().get(j).getListaProduto().get(k).getValorDeVenda();
+                            saida += "CÓDIGO     QUANTIA     PREÇO UNID     TOTAL";
+                            saida += "     " + clientes.get(i).getNotas().get(j).getListaProduto().get(k).getCodigo()+"\n";
+                            saida += "     " + clientes.get(i).getNotas().get(j).getListaProduto().get(k).getQuantEstoque()+"\n";
+                            saida += "     " + clientes.get(i).getNotas().get(j).getListaProduto().get(k).getValorDeVenda()+"\n";
                             fatProduto = clientes.get(i).getNotas().get(j).getListaProduto().get(k).getQuantEstoque() * clientes.get(i).getNotas().get(j).getListaProduto().get(k).getPrecoDeCompra();
-                            saida += "\t" + fatProduto;
-                            saida += "\n\n\n_______________________TOTAL: " + clientes.get(i).getNotas().get(j).getValorTotalCompra();
+                            saida += "\n     " + fatProduto;
+                            saida += "     _______________________TOTAL: " + clientes.get(i).getNotas().get(j).getValorTotalCompra();
                             saida += "\n\n";
                             JOptionPane.showMessageDialog(null, saida);
                         }
@@ -128,7 +128,7 @@ public class ControleCliente {
             saida += "NOTA " + notaEmitida.getCodigo() + "\n";
             saida += "CPF: " + cpf + "\n";
             //codigo nome preçoUnitário preçoComQuantidade
-            saida += "CÓDIGO\tQUANTIA\tPREÇO UNID(R$)\tTOTAL(R$)";
+            saida += "CÓDIGO     QUANTIA     PREÇO UNID(R$)     TOTAL(R$)";
             saida += "     " + notaEmitida.getListaProduto().get(i).getCodigo()+"\n";
             saida += "     " + notaEmitida.getListaProduto().get(i).getQuantEstoque()+"\n";
             saida += "     " + notaEmitida.getListaProduto().get(i).getValorDeVenda()+"\n";
