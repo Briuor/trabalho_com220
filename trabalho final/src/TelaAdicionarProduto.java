@@ -59,7 +59,7 @@ public class TelaAdicionarProduto extends JFrame implements ActionListener{
         {
 
             int codigo = Integer.parseInt(textCodigo.getText());
-            String descricao = textCodigo.getText();
+            String descricao = textDescricao.getText();
             double precoCompra = Double.parseDouble(textPrecoCompra.getText());
             double valorVenda = Double.parseDouble(textValorVenda.getText());
             int quantidade = Integer.parseInt(textQuantidade.getText());
