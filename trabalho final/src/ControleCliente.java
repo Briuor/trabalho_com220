@@ -54,7 +54,7 @@ public class ControleCliente {
     public void consultaCliente(String cpf) {
         String saida = "Cliente não encontrado.\n";
         for (int i = 0; i < clientes.size(); i++) {
-            if (clientes.get(i).getCpf() == cpf) {
+            if (clientes.get(i).getCpf().equals(cpf)) {
                 saida = "CPF pesquisado: " + clientes.get(i).getCpf() + "\n" + "\tNome: " + clientes.get(i).getNome() + "\n" + "\tEndereço: " + clientes.get(i).getEndereco() + "\n" + "\tEmail: " + clientes.get(i).getEmail() + "\n";
                 break;
             }
