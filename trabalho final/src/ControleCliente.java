@@ -96,6 +96,7 @@ public class ControleCliente {
                             saida += "\t" + fatProduto;
                             saida += "\n\n\n_______________________TOTAL: " + clientes.get(i).getNotas().get(j).getValorTotalCompra();
                             saida += "\n\n";
+                            JOptionPane.showMessageDialog(null, saida);
                         }
                     }
                 }
@@ -135,6 +136,7 @@ public class ControleCliente {
             saida += "\t" + fatProduto;
             saida += "\n\n\n_______________________TOTAL: " + notaEmitida.getValorTotalCompra();
             saida += "\n\n";
+            JOptionPane.showMessageDialog(null, saida);
         }
         //Grava cliente com nota
         try {
