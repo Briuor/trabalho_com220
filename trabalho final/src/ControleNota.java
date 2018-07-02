@@ -16,6 +16,16 @@ import javax.swing.JOptionPane;
  *
  * @author Gabriel
  */
+
+// Notas->getListaProdutos().
+//for(int i = 0; i <  notas.size(); i++)
+//{
+//    for(int j =0; j < notas.get(i).getListaProdutos().size(); j++)
+//    {
+//        Produto produto = notas.get(i).getListaProdutos().get(j);
+//        produto.getPrecoDeCompra() * produto.getQuantEstoque();
+//    }
+//}
 public class ControleNota {
 
     private ArrayList<Nota> notas;
