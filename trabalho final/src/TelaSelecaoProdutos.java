@@ -22,8 +22,6 @@ public class TelaSelecaoProdutos extends SpringUtilities implements ActionListen
                                 ControleNota controleNota, String cpfCliente)
     {
         this.notaFiscal = new Nota();
-//        System.console().writer().println("nota instanciada");
-
         this.cpfCliente = cpfCliente;
 
         this.controleCliente = controleCliente;
