@@ -26,7 +26,7 @@ public class MenuPrincipal extends JFrame implements ActionListener{
     {
         this.controleProduto = new ControleProduto();
         this.controleCliente = new ControleCliente();
-        this.controleNota = new ControleNota();
+        this.controleNota    = new ControleNota();
     }
 
     public MenuPrincipal()
@@ -35,22 +35,22 @@ public class MenuPrincipal extends JFrame implements ActionListener{
         this.inicializaControles();
         tabbedPane = new JTabbedPane();
         
-        botaoConsultClient = new JButton("Consultar Cliente");
         botaoFaturProd = new JButton("Consultar Faturamento Produto");
-        botaoFaturClient = new JButton("Consultar Cliente");
-        botaoFaturPeriod = new JButton("Consultar Cliente");
+        botaoFaturClient = new JButton("Consultar Faturamento Cliente");
+        botaoFaturPeriod = new JButton("Consultar Faturamento Periodo");
         JPanel pConsultas = new JPanel();
-        pConsultas.add(botaoConsultClient);
         pConsultas.add(botaoFaturProd);
         pConsultas.add(botaoFaturClient);
         pConsultas.add(botaoFaturPeriod);
 
         botaoAdicionar = new JButton("Adicionar produto");
         botaoConsultProd = new JButton("Consultar produto");
+        botaoConsultClient = new JButton("Consultar Cliente");
         botaoEmitirNota = new JButton("Emitir Nota");
         JPanel pOperacoes = new JPanel();
         pOperacoes.add(botaoAdicionar);
         pOperacoes.add(botaoConsultProd);
+        pOperacoes.add(botaoConsultClient);
         pOperacoes.add(botaoEmitirNota);
 
         tabbedPane.add("Inicio", pOperacoes); //add painel de operacoes
@@ -59,6 +59,7 @@ public class MenuPrincipal extends JFrame implements ActionListener{
         botaoAdicionar.addActionListener(this);
         botaoConsultProd.addActionListener(this);
         botaoEmitirNota.addActionListener(this);
+        botaoConsultClient.addActionListener(this);
         
         this.add(tabbedPane);
         this.pack();
@@ -80,11 +81,16 @@ public class MenuPrincipal extends JFrame implements ActionListener{
             //Se clicar em Emitir Nota
             else if(e.getSource() == botaoEmitirNota)
              new TelaInsercaoCPF(controleCliente, controleProduto, controleNota);
+            
+            else if(e.getSource() == botaoConsultClient)
+             new TelaConsultarCliente(controleCliente);
+            
+          //  else if(e.getSource() == botao10)
+            //    controleNota.consultar10Vendidos();
         }
         catch(Exception exc){
 
         }
-
     }
     
     public static void main(String[] args) {

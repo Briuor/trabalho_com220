@@ -20,7 +20,7 @@ public class TelaSelecaoProdutos extends JFrame implements ActionListener{
     ControleNota controleNota, String cpfCliente)
     {
         this.notaFiscal = new Nota();
-        System.console().writer().println("nota instanciada");
+//        System.console().writer().println("nota instanciada");
         this.cpfCliente = cpfCliente;
 
         this.controleCliente = controleCliente;
@@ -112,7 +112,7 @@ public class TelaSelecaoProdutos extends JFrame implements ActionListener{
                 String data = textDataEmissao.getText();
                 DateFormat formatter = new SimpleDateFormat("MM/dd/yy");
                 Date dataEmissao = (Date)formatter.parse(data);
-                System.console().writer().println("Data Emissao: " + dataEmissao);
+                //System.console().writer().println("Data Emissao: " + dataEmissao);
                 
                 // GERA ID DA NOTA FISCAL IGUAL AO INDICE DELA NO ARRAY DE NOTAS DO CONTROLENOTAS
                 notaFiscal.setCodigo(controleNota.getNotas().size());     
