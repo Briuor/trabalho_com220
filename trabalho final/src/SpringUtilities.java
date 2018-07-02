@@ -39,7 +39,7 @@ import java.awt.*;
  * These utilities are used by several programs, such as
  * SpringBox and SpringCompactGrid.
  */
-public class SpringUtilities {
+public class SpringUtilities extends JFrame {
     /**
      * A debugging utility that prints to stdout the component's
      * minimum, preferred, and maximum sizes.

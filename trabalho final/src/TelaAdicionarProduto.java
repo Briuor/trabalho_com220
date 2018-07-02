@@ -1,4 +1,5 @@
 
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
@@ -13,15 +14,22 @@ import javax.swing.*;
  *
  * @author Aluno
  */
-public class TelaAdicionarProduto extends JFrame implements ActionListener{
+public class TelaAdicionarProduto extends SpringUtilities implements ActionListener{
     private ControleProduto controleProduto;
-    private JTextField textCodigo, textDescricao, textPrecoCompra, textValorVenda, textQuantidade;
-    private JButton botaoAdicionar, botaoVoltar;
-    
+    private JTextField      textCodigo, textDescricao, textPrecoCompra, textValorVenda, textQuantidade;
+    private JButton         botaoAdicionar, botaoVoltar;
+    private JLabel          labelCodigo, labelDescricao, labelPrecoCompra, labelValorVenda, labelQuantidade;
 
     public TelaAdicionarProduto(ControleProduto controleProduto)
     {
         this.controleProduto = controleProduto;
+        
+        labelCodigo = new JLabel("Codigo: ");
+        labelDescricao = new JLabel("Descricao: ");
+        labelPrecoCompra = new JLabel("preço De Compra: ");
+        labelValorVenda = new JLabel("Valor de Venda: ");
+        labelQuantidade = new JLabel("Quantidade: ");
+        
         textCodigo = new JTextField("", 20);
         textDescricao = new JTextField("", 20);
         textPrecoCompra = new JTextField("", 20);
@@ -33,19 +41,42 @@ public class TelaAdicionarProduto extends JFrame implements ActionListener{
         botaoAdicionar.addActionListener(this);
         botaoVoltar.addActionListener(this);
         
-        JPanel p = new JPanel();
-        p.add(new JLabel("Codigo: "));
-        p.add(textCodigo);
-        p.add(new JLabel("Descricao: "));
-        p.add(textDescricao);
-        p.add(new JLabel("preço De Compra: "));
-        p.add(textPrecoCompra);
-        p.add(new JLabel("Valor de Venda: "));
-        p.add(textValorVenda);
-        p.add(new JLabel("Quantidade: "));
-        p.add(textQuantidade);
-        p.add(botaoAdicionar);
-        p.add(botaoVoltar);
+        JPanel pForm = new JPanel(new SpringLayout());
+        
+        pForm.add(labelCodigo);
+        labelCodigo.setLabelFor(textCodigo);
+        pForm.add(textCodigo);
+        
+        pForm.add(labelDescricao);
+        labelDescricao.setLabelFor(textDescricao);
+        pForm.add(textDescricao);
+        
+        pForm.add(labelPrecoCompra);
+        labelPrecoCompra.setLabelFor(textPrecoCompra);
+        pForm.add(textPrecoCompra);
+        
+        pForm.add(labelValorVenda);
+        labelValorVenda.setLabelFor(textValorVenda);
+        pForm.add(textValorVenda);
+        
+        pForm.add(labelQuantidade);
+        labelQuantidade.setLabelFor(textQuantidade);
+        pForm.add(textQuantidade);
+        
+        JPanel pButton = new JPanel();
+        
+        pButton.add(botaoAdicionar);
+        pButton.add(botaoVoltar);
+        
+        SpringUtilities.makeCompactGrid(pForm,
+                                5, 2, //rows, cols
+                                3, 3,        //initX, initY
+                                3, 3); 
+        
+        JPanel p = new JPanel(new BorderLayout());
+        
+        p.add(pForm, BorderLayout.NORTH);
+        p.add(pButton, BorderLayout.SOUTH);
         
         this.add(p);
         this.pack();
