@@ -20,7 +20,7 @@ public class TelaSelecaoProdutos extends JFrame implements ActionListener{
     ControleNota controleNota, String cpfCliente)
     {
         this.notaFiscal = new Nota();
-        System.console().writer().println("nota instanciada");
+        //System.console().writer().println("nota instanciada");
         this.cpfCliente = cpfCliente;
 
         this.controleCliente = controleCliente;

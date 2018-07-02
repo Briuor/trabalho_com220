@@ -12,7 +12,6 @@ import java.util.Date;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Gabriel
@@ -27,15 +26,15 @@ public class ControleCliente {
             this.lerClientes(); // le arquivo e preenche array de produtos
             //System.console().writer().println("arquivo clientes.ser lido");
             String clientesStr = "";
-            for (int i = 0;i < clientes.size() ;i++ ) {
+            for (int i = 0; i < clientes.size(); i++) {
                 clientesStr += "Nome: " + clientes.get(i).getNome() + "\ncpf: "
-                            + clientes.get(i).getCpf() + "\n";
-                for(int j = 0;j < clientes.get(i).getNotas().size(); j++)
-                    clientesStr += "Notas: " + clientes.get(i).getNotas().get(j).getCodigo()+"\n";
+                        + clientes.get(i).getCpf() + "\n";
+                for (int j = 0; j < clientes.get(i).getNotas().size(); j++) {
+                    clientesStr += "Notas: " + clientes.get(i).getNotas().get(j).getCodigo() + "\n";
+                }
             }
             //System.console().writer().println(clientesStr);
-        }
-        catch (Exception exc) {
+        } catch (Exception exc) {
             //System.console().writer().println("erro ao ler arquivo de clientes");
         }
     }
@@ -73,28 +72,43 @@ public class ControleCliente {
         }
         return false;
     }
-    
-    //Gabriel Mouallem: vou fazer jaja... pode deixar
-    /*public void consultaCompras(String cpf, Date dataInicial, Date dataFinal) {
-        String saida = "CPF não encontrado.\n";
-        int totalNotas;
+
+    //É o item (vii) para consultar vendas
+    public void consultaCompras(String cpf, Date dataInicial, Date dataFinal) {
+        String saida = "Cliente não encontrado.\n";
+        double fatProduto = 0;
         for (int i = 0; i < clientes.size(); i++) {
-            if (clientes.get(i).getCpf() == cpf) {
-                saida = "CPF pesquisado: " + clientes.get(i).getCpf() + "\n";
-                saida += "Total de Notas Emitidas: " + clientes.get(i).getNotas().size() + "\n";
-                for (int j = 0; j < clientes.get(i).getNotas().size(); j++) {
-                    saida += "Nota:\n" + "\tCódigo: " + clientes.get(i).getNotas().get(j).getCodigo() + "\tValor Total: " + clientes.get(i).getNotas().get(j).getValorTotalCompra() + "\n\n";
+            if (clientes.get(i).getCpf().equals(cpf)) { //encontrando o cliente
+                saida = "Cliente pesquisado:\n";
+                saida += "Nome: " + clientes.get(i).getNome() + "\n";
+                saida += "CPF: " + clientes.get(i).getCpf() + "\n\n";
+                saida += "Vendas realizadas: \n";
+                for (int j = 0; j < clientes.get(i).getNotas().size(); j++) {  //percorrendo o Array de notas
+                    if (clientes.get(i).getNotas().get(j).getDataEmissao().after(dataInicial) && clientes.get(i).getNotas().get(j).getDataEmissao().before(dataFinal)) { //encontrando notas entre as datas
+                        for (int k = 0; k < clientes.get(i).getNotas().get(j).getListaProduto().size(); k++) { // percorrendo o Array de produtos
+                            saida += "NOTA " + clientes.get(i).getNotas().get(j).getCodigo() + "\n";
+                            //codigo nome preçoUnitário preçoComQuantidade
+                            saida += "CÓDIGO\tQUANTIA\tPREÇO UNID\tTOTAL";
+                            saida += "\t" + clientes.get(i).getNotas().get(j).getListaProduto().get(k).getCodigo();
+                            saida += "\t" + clientes.get(i).getNotas().get(j).getListaProduto().get(k).getQuantEstoque();
+                            saida += "\t" + clientes.get(i).getNotas().get(j).getListaProduto().get(k).getValorDeVenda();
+                            fatProduto = clientes.get(i).getNotas().get(j).getListaProduto().get(k).getQuantEstoque() * clientes.get(i).getNotas().get(j).getListaProduto().get(k).getPrecoDeCompra();
+                            saida += "\t" + fatProduto;
+                            saida += "\n\n\n_______________________TOTAL: " + clientes.get(i).getNotas().get(j).getValorTotalCompra();
+                            saida += "\n\n";
+                        }
+                    }
                 }
+            } else {
                 JOptionPane.showMessageDialog(null, saida);
-                break;
             }
         }
-    }*/
+    }
 
-
-        //--------VERIFICAR QUANTIDADE DE PRODUTOS NA NOTA < 10
+    //--------VERIFICAR QUANTIDADE DE PRODUTOS NA NOTA < 10
     public void emitirNota(String cpf, Nota notaEmitida) {
-        String produtosNota = "";
+        String saida = "";
+        double fatProduto=0;
         for (int i = 0; i < clientes.size(); i++) {
             //procura usuario pelo cpf e coloca nota emitida no array de notas dele
             if (clientes.get(i).getCpf().equals(cpf)) {
@@ -102,16 +116,31 @@ public class ControleCliente {
             }
         }
         //MOSTRA INFORMACOES DA NOTA
-        for (int i = 0; i < notaEmitida.getListaProduto().size(); i++) {
+        /*for (int i = 0; i < notaEmitida.getListaProduto().size(); i++) {
             Produto produto = notaEmitida.getListaProduto().get(i);
             produtosNota += "Codigo: " + produto.getCodigo() + "\n";
         }
         String info = "Codigo nota: " + notaEmitida.getCodigo()
-                    +"\nValor Total: " + notaEmitida.getValorTotalCompra() + "\nProdutos:\n";
-        JOptionPane.showMessageDialog(null, info + produtosNota);
+                + "\nValor Total: " + notaEmitida.getValorTotalCompra() + "\nProdutos:\n";
+        JOptionPane.showMessageDialog(null, info + produtosNota);*/
+        for (int i = 0; i < notaEmitida.getListaProduto().size(); i++) { 
+            saida += "NOTA " + notaEmitida.getCodigo() + "\n";
+            saida += "CPF: " + cpf + "\n";
+            //codigo nome preçoUnitário preçoComQuantidade
+            saida += "CÓDIGO\tQUANTIA\tPREÇO UNID\tTOTAL";
+            saida += "\t" + notaEmitida.getListaProduto().get(i).getCodigo();
+            saida += "\t" + notaEmitida.getListaProduto().get(i).getQuantEstoque();
+            saida += "\t" + notaEmitida.getListaProduto().get(i).getValorDeVenda();
+            fatProduto = notaEmitida.getListaProduto().get(i).getValorDeVenda()*notaEmitida.getListaProduto().get(i).getQuantEstoque();
+            saida += "\t" + fatProduto;
+            saida += "\n\n\n_______________________TOTAL: " + notaEmitida.getValorTotalCompra();
+            saida += "\n\n";
+        }
         //Grava cliente com nota
-        try{        this.gravarClientes();  }
-        catch(Exception exc){}
+        try {
+            this.gravarClientes();
+        } catch (Exception exc) {
+        }
     }
 
     public void consultaFatCliente(String cpf) {
@@ -126,11 +155,10 @@ public class ControleCliente {
                 }
             }
         }
-        if (temCliente == false){
+        if (temCliente == false) {
             JOptionPane.showMessageDialog(null, saida);
-        }
-        else {
-            saida = "CPF pesquisado: "+cpf+"\n"+"Faturamento do cliente: "+fatTotal+"\n";
+        } else {
+            saida = "CPF pesquisado: " + cpf + "\n" + "Faturamento do cliente: " + fatTotal + "\n";
             JOptionPane.showMessageDialog(null, saida);
         }
     }
