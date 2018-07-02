@@ -26,7 +26,7 @@ public class MenuPrincipal extends JFrame implements ActionListener{
     {
         this.controleProduto = new ControleProduto();
         this.controleCliente = new ControleCliente();
-        this.controleNota = new ControleNota();
+        this.controleNota    = new ControleNota();
     }
 
     public MenuPrincipal()
@@ -35,26 +35,28 @@ public class MenuPrincipal extends JFrame implements ActionListener{
         this.inicializaControles();
         tabbedPane = new JTabbedPane();
         
-        botaoConsultClient = new JButton("Consultar Cliente");
-        botaoFaturProd = new JButton("Consultar Faturamento Produto");
-        botaoFaturClient = new JButton("Consultar Cliente");
-        botaoFaturPeriod = new JButton("Consultar Cliente");
-        JPanel pConsultas = new JPanel();
+        botaoConsultClient  = new JButton("Consultar Cliente");
+        botaoFaturProd      = new JButton("Consultar Faturamento Produto");
+        botaoFaturClient    = new JButton("Consultar Cliente");
+        botaoFaturPeriod    = new JButton("Consultar Cliente");
+        JPanel pConsultas   = new JPanel();
+        
         pConsultas.add(botaoConsultClient);
         pConsultas.add(botaoFaturProd);
         pConsultas.add(botaoFaturClient);
         pConsultas.add(botaoFaturPeriod);
 
-        botaoAdicionar = new JButton("Adicionar produto");
-        botaoConsultProd = new JButton("Consultar produto");
-        botaoEmitirNota = new JButton("Emitir Nota");
-        JPanel pOperacoes = new JPanel();
+        botaoAdicionar      = new JButton("Adicionar produto");
+        botaoConsultProd    = new JButton("Consultar produto");
+        botaoEmitirNota     = new JButton("Emitir Nota");
+        JPanel pOperacoes   = new JPanel();
+        
         pOperacoes.add(botaoAdicionar);
         pOperacoes.add(botaoConsultProd);
         pOperacoes.add(botaoEmitirNota);
 
-        tabbedPane.add("Inicio", pOperacoes); //add painel de operacoes
-        tabbedPane.add("Financeiro", pConsultas);        //add painel de consultas
+        tabbedPane.add("Inicio", pOperacoes);       //add painel de operacoes
+        tabbedPane.add("Financeiro", pConsultas);   //add painel de consultas
         
         botaoAdicionar.addActionListener(this);
         botaoConsultProd.addActionListener(this);
