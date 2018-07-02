@@ -1,10 +1,11 @@
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 import java.util.*;
 import java.text.*;
 
-public class TelaSelecaoProdutos extends JFrame implements ActionListener{
+public class TelaSelecaoProdutos extends SpringUtilities implements ActionListener{
     private ControleCliente controleCliente;
     private ControleProduto controleProduto;
     private ControleNota controleNota;
@@ -15,35 +16,69 @@ public class TelaSelecaoProdutos extends JFrame implements ActionListener{
 
     private JTextField textCodigo, textQuantidade, textDataEmissao;
     private JButton botaoEmitir, botaoAdicionar;
+    private JLabel labelCodigo, labelQuantidade, labelEmitir;
 
     public TelaSelecaoProdutos(ControleCliente controleCliente, ControleProduto controleProduto,
-    ControleNota controleNota, String cpfCliente)
+                                ControleNota controleNota, String cpfCliente)
     {
         this.notaFiscal = new Nota();
-        System.console().writer().println("nota instanciada");
         this.cpfCliente = cpfCliente;
 
         this.controleCliente = controleCliente;
         this.controleProduto = controleProduto;
         this.controleNota = controleNota;
+        
         textCodigo = new JTextField("", 20);
         textQuantidade = new JTextField("", 20);
         textDataEmissao = new JTextField("", 20);
+        
+        labelCodigo = new JLabel("Código do produto: ");
+        labelQuantidade = new JLabel("Quantidade: ");
+        labelEmitir = new JLabel("Data de emissao: ");
         
         botaoEmitir = new JButton("Emitir Nota");
         botaoAdicionar = new JButton("Adicionar produto");
         botaoEmitir.addActionListener(this);
         botaoAdicionar.addActionListener(this);
         
-        JPanel p = new JPanel();
-        p.add(new JLabel("Código do produto: "));
-        p.add(textCodigo);
-        p.add(new JLabel("Quantidade: "));
-        p.add(textQuantidade);
-        p.add(botaoAdicionar);
-        p.add(new JLabel("Data de emissao: "));
-        p.add(textDataEmissao);
-        p.add(botaoEmitir);
+        JPanel pFormTop = new JPanel(new SpringLayout());
+        JPanel pTop = new JPanel(new BorderLayout());
+        
+        pFormTop.add(labelCodigo);
+        labelCodigo.setLabelFor(textCodigo);
+        pFormTop.add(textCodigo);
+        
+        pFormTop.add(labelQuantidade);
+        labelQuantidade.setLabelFor(textQuantidade);
+        pFormTop.add(textQuantidade);
+        
+        SpringUtilities.makeCompactGrid(pFormTop,
+                                2, 2, //rows, cols
+                                3, 3,        //initX, initY
+                                3, 3);       //xPad, yPad
+        
+        pTop.add(botaoAdicionar, BorderLayout.SOUTH);
+        pTop.add(pFormTop, BorderLayout.NORTH);
+        
+        JPanel pFormBot = new JPanel(new SpringLayout());
+        JPanel pBot = new JPanel(new BorderLayout());
+        
+        pFormBot.add(labelEmitir);
+        labelEmitir.setLabelFor(textDataEmissao);
+        pFormBot.add(textDataEmissao);
+        
+        SpringUtilities.makeCompactGrid(pFormBot,
+                                1, 2, //rows, cols
+                                3, 3,        //initX, initY
+                                3, 3);       //xPad, yPad
+        
+        pBot.add(botaoEmitir, BorderLayout.SOUTH);
+        pBot.add(pFormBot, BorderLayout.NORTH);
+                
+        JPanel p = new JPanel(new BorderLayout());
+        
+        p.add(pTop, BorderLayout.NORTH);
+        p.add(pBot, BorderLayout.SOUTH);
         
         this.add(p);
         this.pack();
