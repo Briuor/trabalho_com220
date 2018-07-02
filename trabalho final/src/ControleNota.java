@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Date;
+import java.util.Vector;
 import javax.swing.JOptionPane;
 
 /*
@@ -142,12 +143,41 @@ public class ControleNota {
             no final quais totais são de quais produtos
         Alguma outra sugestão? Escrevam aqui que eu procuro fazer...
      */
-    public void topDezMaisVendidos() {
+    public void consultarMaisVendidos() {
+        ArrayList<Integer> codProd = new ArrayList();
+        ArrayList<Integer> quantidadeProd = new ArrayList();
+        String listaMaisVendidos = new String();
+        int aux;
+        
         for (int i = 0; i < notas.size(); i++) {
             for (int j = 0; j < notas.get(i).getListaProduto().size(); j++) {
-
+                for(int k = 0; k < codProd.size(); k++){
+                   if(codProd.get(k) != notas.get(i).getListaProduto().get(j).getCodigo()){
+                       quantidadeProd.set(k, notas.get(i).getListaProduto().get(j).getQuantEstoque());
+                   } else{
+                       codProd.add(notas.get(i).getListaProduto().get(j).getCodigo());
+                       quantidadeProd.add(notas.get(i).getListaProduto().get(j).getQuantEstoque());
+                   }
+                }
             }
         }
+         for(int j = 0; j < codProd.size(); j++){
+            for(int k = 0; k < codProd.size()-1; k++){
+                if(codProd.get(k) < codProd.get(k+1)){
+                    aux = codProd.get(k);
+                    codProd.set(k, codProd.get(k+1));
+                    codProd.set(k+1, codProd.get(k));
+                    
+                    aux = quantidadeProd.get(k);
+                    quantidadeProd.set(k, quantidadeProd.get(k+1));
+                    quantidadeProd.set(k+1, quantidadeProd.get(k));
+                }
+           }
+        }
+         for(int i = 0; i > codProd.size(); i++){
+            listaMaisVendidos += "Codigo do Produto: " + codProd.get(i) + "Vendeu: " + quantidadeProd.get(i) + "\n";
+         }
+         JOptionPane.showMessageDialog(null, listaMaisVendidos);
     }
 
     // //Emitir nota é o responsável pelas compras dos clientes
