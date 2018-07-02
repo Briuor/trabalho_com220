@@ -128,13 +128,13 @@ public class ControleCliente {
             saida += "NOTA " + notaEmitida.getCodigo() + "\n";
             saida += "CPF: " + cpf + "\n";
             //codigo nome preçoUnitário preçoComQuantidade
-            saida += "CÓDIGO\tQUANTIA\tPREÇO UNID\tTOTAL";
-            saida += "\t" + notaEmitida.getListaProduto().get(i).getCodigo();
-            saida += "\t" + notaEmitida.getListaProduto().get(i).getQuantEstoque();
-            saida += "\t" + notaEmitida.getListaProduto().get(i).getValorDeVenda();
+            saida += "CÓDIGO\tQUANTIA\tPREÇO UNID(R$)\tTOTAL(R$)";
+            saida += "     " + notaEmitida.getListaProduto().get(i).getCodigo()+"\n";
+            saida += "     " + notaEmitida.getListaProduto().get(i).getQuantEstoque()+"\n";
+            saida += "     " + notaEmitida.getListaProduto().get(i).getValorDeVenda()+"\n";
             fatProduto = notaEmitida.getListaProduto().get(i).getValorDeVenda()*notaEmitida.getListaProduto().get(i).getQuantEstoque();
-            saida += "\t" + fatProduto;
-            saida += "\n\n\n_______________________TOTAL: " + notaEmitida.getValorTotalCompra();
+            saida += "\n     " + fatProduto+"\n";
+            saida += "     _______________________TOTAL: " + notaEmitida.getValorTotalCompra()+"\n";
             saida += "\n\n";
             JOptionPane.showMessageDialog(null, saida);
         }
