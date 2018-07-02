@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.Date;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -24,7 +25,7 @@ public class ControleCliente {
         this.clientes = new ArrayList<>();
         try {
             this.lerClientes(); // le arquivo e preenche array de produtos
-            System.console().writer().println("arquivo clientes.ser lido");
+            //System.console().writer().println("arquivo clientes.ser lido");
             String clientesStr = "";
             for (int i = 0;i < clientes.size() ;i++ ) {
                 clientesStr += "Nome: " + clientes.get(i).getNome() + "\ncpf: "
@@ -32,10 +33,10 @@ public class ControleCliente {
                 for(int j = 0;j < clientes.get(i).getNotas().size(); j++)
                     clientesStr += "Notas: " + clientes.get(i).getNotas().get(j).getCodigo()+"\n";
             }
-            System.console().writer().println(clientesStr);
+            //System.console().writer().println(clientesStr);
         }
         catch (Exception exc) {
-            System.console().writer().println("erro ao ler arquivo de clientes");
+            //System.console().writer().println("erro ao ler arquivo de clientes");
         }
     }
 
@@ -44,9 +45,9 @@ public class ControleCliente {
         try {
             clientes.add(cliente);
             this.gravarClientes();
-            System.console().writer().println("Cliente " + nome + " do cpf " + cpf + " adicionado");
+            //System.console().writer().println("Cliente " + nome + " do cpf " + cpf + " adicionado");
         } catch (Exception exc) {
-            System.console().writer().println("Erro ao gravar clientes");
+            //System.console().writer().println("Erro ao gravar clientes");
         }
     }
 
@@ -72,9 +73,9 @@ public class ControleCliente {
         }
         return false;
     }
-
-    /*  COMENTADO, POIS USAREMOS O DATE AO INVES DE STRING DATA
-    public void consultaCompras(String cpf, String dataInicial, String dataFinal) {
+    
+    //Gabriel Mouallem: vou fazer jaja... pode deixar
+    /*public void consultaCompras(String cpf, Date dataInicial, Date dataFinal) {
         String saida = "CPF não encontrado.\n";
         int totalNotas;
         for (int i = 0; i < clientes.size(); i++) {

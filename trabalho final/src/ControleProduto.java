@@ -22,10 +22,10 @@ public class ControleProduto {
         this.produtos = new ArrayList<>();
         try{
             this.lerProdutos(); // le arquivo e preenche array de produtos
-            System.console().writer().println("arquivo produtos.ser lido");
+            //System.console().writer().println("arquivo produtos.ser lido");
         }
         catch(Exception exc){
-            System.console().writer().println("erro ao ler arquivo");
+            //System.console().writer().println("erro ao ler arquivo");
         }
     }
     
@@ -41,19 +41,19 @@ public class ControleProduto {
                     produtos.get(i).setQuantEstoque(quantidadeEstoque+quantEstoque); //Acrescenta a quantidade desejada
                     //---GRAVA ARQUIVO---
                     this.gravarProdutos();
-                    System.console().writer().println("produto " + codigo + "ja existente gravado");            
+                    //System.console().writer().println("produto " + codigo + "ja existente gravado");            
                     return;
                 }
                 //Se nao existe
             }
             //Segundo caso: adicionar um produto que antes não existia no sistema
-            System.console().writer().println("Produto "+ codigo +" Adicionado");
+            //System.console().writer().println("Produto "+ codigo +" Adicionado");
             produtos.add(new Produto(codigo, descricao, precoCompra, valorVenda, quantEstoque));
             //---GRAVA ARQUIVO---
             this.gravarProdutos();
-            System.console().writer().println("produto " + codigo + " gravado");            
+            //System.console().writer().println("produto " + codigo + " gravado");            
         } catch (Exception exc){
-            System.console().writer().println("Nao foi possivel adicionar produto");            
+            //System.console().writer().println("Nao foi possivel adicionar produto");            
         }
 
     }
@@ -64,7 +64,7 @@ public class ControleProduto {
         for (int i=0;i<produtos.size();i++){
             //System.console().writer().println(codigo + " e " +produtos.get(0).getCodigo());
             if (produtos.get(i).getCodigo() == codigo){
-                saida = "Código pesquisado: "+produtos.get(i).getCodigo()+"\n"+"\tEstoque: "+produtos.get(i).getQuantEstoque()+"\n"+"\tDescrição: "+produtos.get(i).getDescricao()+"\n"+"\tPreço de Venda: "+produtos.get(i).getValorDeVenda()+"\n";
+                saida = "Código pesquisado: "+produtos.get(i).getCodigo()+"\n"+"\tEstoque: "+produtos.get(i).getQuantEstoque()+"\n"+"\tDescrição: "+produtos.get(i).getDescricao()+"\n"+"\tPreço de Venda: R$"+produtos.get(i).getValorDeVenda()+"\n";
                 break;
             }
         }
@@ -110,7 +110,7 @@ public class ControleProduto {
                 {
                     quantiEstoque = produtos.get(j).getQuantEstoque();//pega quantidade no estoque
                     //retira do estoque
-                    System.console().writer().println(quantiEstoque +"-"+ produtoNota.getQuantEstoque());
+                    //System.console().writer().println(quantiEstoque +"-"+ produtoNota.getQuantEstoque());
                     produtos.get(j).setQuantEstoque(quantiEstoque - produtoNota.getQuantEstoque());
                     //Grava atualização
                     try{
