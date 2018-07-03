@@ -112,14 +112,14 @@ public class ControleCliente {
             }
         }
         saida += "NOTA cod" + notaEmitida.getCodigo() + "\n";
-        for (int i = 0; i < notaEmitida.getListaProduto().size(); i++) { 
-            saida += "   CPF: " + cpf + "\n\n";
+        saida += "   CPF: " + cpf + "\n\n";
+        for (int i = 0; i < notaEmitida.getListaProduto().size(); i++) {
             //codigo nome preçoUnitário preçoComQuantidade
-            saida += "   Código do produto: " + notaEmitida.getListaProduto().get(i).getCodigo()+"\n";
+            saida += "   Código do produto: " + notaEmitida.getListaProduto().get(i).getCodigo() + "\n";
             saida += "   Quantia: " + notaEmitida.getListaProduto().get(i).getQuantEstoque() + "\n";
             saida += "   Preço Unid (R$): " + notaEmitida.getListaProduto().get(i).getValorDeVenda() + "\n\n";
         }
-        saida += "   TOTAL: " + notaEmitida.getValorTotalCompra()+"\n";
+        saida += "   TOTAL: " + notaEmitida.getValorTotalCompra() + "\n";
         JOptionPane.showMessageDialog(null, saida);
         //Grava cliente com nota
         try {
@@ -136,6 +136,7 @@ public class ControleCliente {
             if (clientes.get(i).getCpf() == cpf) {
                 temCliente = true;
                 for (int j = 0; j < clientes.get(i).getNotas().size(); j++) {
+                    clientes.get(i).getNotas().get(j).setValorTotalCompra();
                     fatTotal += clientes.get(i).getNotas().get(j).getValorTotalCompra();
                 }
             }
