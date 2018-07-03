@@ -47,6 +47,7 @@ public class TelaInsercaoCPF extends JFrame implements ActionListener{
 		if(controleCliente.validaCPF(textCPF.getText()) == true){
 			// passa controladores de cliente e produto e cpf do usuario para saber qual usuario esta comprando
 			new TelaSelecaoProdutos(controleCliente, controleProduto, controleNota, textCPF.getText()); 
+                        this.dispose();
 		}
 
 		//se invalido chama tela Cadastro Cliente

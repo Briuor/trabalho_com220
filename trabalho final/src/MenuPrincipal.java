@@ -73,9 +73,7 @@ public class MenuPrincipal extends JFrame implements ActionListener{
         botaoFaturPeriod.addActionListener(this);
         botaoFaturClientPeriodo.addActionListener(this);
         botaoFaturClient.addActionListener(this);
-        
-        
-        
+
         this.add(tabbedPane);
         this.pack();
         this.setVisible(true);
@@ -114,7 +112,6 @@ public class MenuPrincipal extends JFrame implements ActionListener{
             //Consultar faturamento por periodo cliente
             else if(e.getSource() == botaoFaturClient)
              new TelaFaturamentoCliente(controleCliente);   
-
         }
         catch(Exception exc){
 
