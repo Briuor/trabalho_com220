@@ -130,7 +130,7 @@ public class ControleNota {
         for (int i = 0; i < notas.size(); i++) {
             if (notas.get(i).getDataEmissao().after(dataInicial) && notas.get(i).getDataEmissao().before(dataFinal)) {
                 for (int j = 0; j < notas.get(i).getListaProduto().size(); i++) {
-                    //custoTotal += notas.get(i).getListaProduto().get(i).
+                    custoTotal += notas.get(i).getListaProduto().get(j).getPrecoDeCompra();
                 }
             }
         }

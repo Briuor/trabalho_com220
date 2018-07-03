@@ -80,23 +80,18 @@ public class ControleCliente {
         for (int i = 0; i < clientes.size(); i++) {
             if (clientes.get(i).getCpf().equals(cpf)) { //encontrando o cliente
                 saida = "Cliente pesquisado:\n";
-                saida += "Nome: " + clientes.get(i).getNome() + "\n";
-                saida += "CPF: " + clientes.get(i).getCpf() + "\n\n";
-                saida += "Vendas realizadas: \n";
+                saida += "   Nome: " + clientes.get(i).getNome() + "\n";
+                saida += "   CPF: " + clientes.get(i).getCpf() + "\n\n";
+                saida += "Vendas realizadas: \n\n";
                 for (int j = 0; j < clientes.get(i).getNotas().size(); j++) {  //percorrendo o Array de notas
                     if (clientes.get(i).getNotas().get(j).getDataEmissao().after(dataInicial) && clientes.get(i).getNotas().get(j).getDataEmissao().before(dataFinal)) { //encontrando notas entre as datas
+                        saida += "NOTA cod" + clientes.get(i).getNotas().get(j).getCodigo() + "\n";
                         for (int k = 0; k < clientes.get(i).getNotas().get(j).getListaProduto().size(); k++) { // percorrendo o Array de produtos
-                            saida += "NOTA " + clientes.get(i).getNotas().get(j).getCodigo() + "\n";
-                            //codigo nome preçoUnitário preçoComQuantidade
-                            saida += "CÓDIGO     QUANTIA     PREÇO UNID     TOTAL\n";
-                            saida += "         " + clientes.get(i).getNotas().get(j).getListaProduto().get(k).getCodigo();
-                            saida += "         " + clientes.get(i).getNotas().get(j).getListaProduto().get(k).getQuantEstoque();
-                            saida += "         " + clientes.get(i).getNotas().get(j).getListaProduto().get(k).getValorDeVenda();
-                            fatProduto = clientes.get(i).getNotas().get(j).getListaProduto().get(k).getQuantEstoque() * clientes.get(i).getNotas().get(j).getListaProduto().get(k).getPrecoDeCompra();
-                            saida += "\n         " + fatProduto;
-                            saida += "         _________________________TOTAL: " + clientes.get(i).getNotas().get(j).getValorTotalCompra();
+                            saida += "   Código do produto: " + clientes.get(i).getNotas().get(j).getListaProduto().get(k).getCodigo() + "\n";
+                            saida += "   Quantia: " + clientes.get(i).getNotas().get(j).getListaProduto().get(k).getQuantEstoque() + "\n";
+                            saida += "   Preço Unid (R$): " + clientes.get(i).getNotas().get(j).getListaProduto().get(k).getValorDeVenda() + "\n";
+                            saida += "   TOTAL: " + clientes.get(i).getNotas().get(j).getValorTotalCompra();
                             saida += "\n\n";
-                            JOptionPane.showMessageDialog(null, saida);
                         }
                     }
                 }
@@ -109,35 +104,22 @@ public class ControleCliente {
     //--------VERIFICAR QUANTIDADE DE PRODUTOS NA NOTA < 10
     public void emitirNota(String cpf, Nota notaEmitida) {
         String saida = "";
-        double fatProduto=0;
         for (int i = 0; i < clientes.size(); i++) {
             //procura usuario pelo cpf e coloca nota emitida no array de notas dele
             if (clientes.get(i).getCpf().equals(cpf)) {
                 clientes.get(i).getNotas().add(notaEmitida);
             }
         }
-        //MOSTRA INFORMACOES DA NOTA
-        /*for (int i = 0; i < notaEmitida.getListaProduto().size(); i++) {
-            Produto produto = notaEmitida.getListaProduto().get(i);
-            produtosNota += "Codigo: " + produto.getCodigo() + "\n";
-        }
-        String info = "Codigo nota: " + notaEmitida.getCodigo()
-                + "\nValor Total: " + notaEmitida.getValorTotalCompra() + "\nProdutos:\n";
-        JOptionPane.showMessageDialog(null, info + produtosNota);*/
         for (int i = 0; i < notaEmitida.getListaProduto().size(); i++) { 
-            saida += "NOTA " + notaEmitida.getCodigo() + "\n";
-            saida += "CPF: " + cpf + "\n";
+            saida += "NOTA cod" + notaEmitida.getCodigo() + "\n";
+            saida += "   CPF: " + cpf + "\n\n";
             //codigo nome preçoUnitário preçoComQuantidade
-            saida += "CÓDIGO     QUANTIA     PREÇO UNID(R$)     TOTAL(R$)\n";
-            saida += "         " + notaEmitida.getListaProduto().get(i).getCodigo();
-            saida += "         " + notaEmitida.getListaProduto().get(i).getQuantEstoque();
-            saida += "         " + notaEmitida.getListaProduto().get(i).getValorDeVenda();
-            fatProduto = notaEmitida.getListaProduto().get(i).getValorDeVenda()*notaEmitida.getListaProduto().get(i).getQuantEstoque();
-            saida += "\n     " + fatProduto+"\n";
-            saida += "         _________________________TOTAL: " + notaEmitida.getValorTotalCompra()+"\n";
-            saida += "\n\n";
-            JOptionPane.showMessageDialog(null, saida);
+            saida += "   Código do produto: " + notaEmitida.getListaProduto().get(i).getCodigo()+"\n";
+            saida += "   Quantia: " + notaEmitida.getListaProduto().get(i).getQuantEstoque() + "\n";
+            saida += "   Preço Unid (R$): " + notaEmitida.getListaProduto().get(i).getValorDeVenda() + "\n\n";
         }
+        saida += "   TOTAL: " + notaEmitida.getValorTotalCompra()+"\n";
+        JOptionPane.showMessageDialog(null, saida);
         //Grava cliente com nota
         try {
             this.gravarClientes();
