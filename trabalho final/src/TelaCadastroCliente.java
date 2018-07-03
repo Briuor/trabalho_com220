@@ -80,6 +80,7 @@ public final class TelaCadastroCliente extends SpringUtilities implements Action
         String endereco = enderecoText.getText();
         String cpf = cpfText.getText();
         controleCliente.cadastraCliente(nome, endereco, email, cpf);
+        this.dispose();
         JOptionPane.showMessageDialog(null, "Cadastro Feito com Sucesso!");
     }
 

@@ -15,8 +15,8 @@ import javax.swing.*;
 public class MenuPrincipal extends JFrame implements ActionListener{
     private JTabbedPane tabbedPane;
     private JButton botaoAdicionar, botaoEmitirNota, botaoConsultProd, botaoConsultClient,
-                    botaoFaturProd, botaoFaturClient, botaoFaturPeriod, // Botoes de cohnsultar faturamento
-                    botaoConsultarLucro, botaoVendas, botaoMaisVendidos;
+                    botaoFaturProd, botaoFaturClientPeriodo, botaoFaturPeriod, // Botoes de cohnsultar faturamento
+                    botaoConsultarLucro, botaoVendas, botaoMaisVendidos, botaoFaturClient;
 
     private ControleProduto controleProduto;
     private ControleCliente controleCliente;
@@ -36,15 +36,18 @@ public class MenuPrincipal extends JFrame implements ActionListener{
         tabbedPane = new JTabbedPane();
         
         botaoFaturProd = new JButton("Consultar Faturamento Produto");
-        botaoFaturClient = new JButton("Consultar Faturamento Cliente");
+        botaoFaturClientPeriodo = new JButton("Consultar Faturamento Cliente Por Periodo");
         botaoFaturPeriod = new JButton("Consultar Faturamento Periodo");
         botaoMaisVendidos = new JButton("Consultar Produtos Mais Vendidos");
+        botaoFaturClient = new JButton("Consultar Faturamento Cliente");
         JPanel pConsultas = new JPanel();
         
         pConsultas.add(botaoFaturProd);
-        pConsultas.add(botaoFaturClient);
+        pConsultas.add(botaoFaturClientPeriodo);
         pConsultas.add(botaoFaturPeriod);
         pConsultas.add(botaoMaisVendidos);
+        pConsultas.add(botaoFaturClient);
+        
         
         botaoAdicionar = new JButton("Adicionar produto");
         botaoConsultProd = new JButton("Consultar produto");
@@ -68,8 +71,9 @@ public class MenuPrincipal extends JFrame implements ActionListener{
         botaoMaisVendidos.addActionListener(this);
         botaoFaturProd.addActionListener(this);
         botaoFaturPeriod.addActionListener(this);
-        
-        
+        botaoFaturClientPeriodo.addActionListener(this);
+        botaoFaturClient.addActionListener(this);
+
         this.add(tabbedPane);
         this.pack();
         this.setVisible(true);
@@ -99,10 +103,15 @@ public class MenuPrincipal extends JFrame implements ActionListener{
             //Consulta faturamento por produto
             else if(e.getSource() == botaoFaturProd)
              new TelaFaturamentoProduto(controleNota);
-            //Consulta faturmaento pot periodo
+            //Consulta faturmaento por periodo
             else if(e.getSource() == botaoFaturPeriod)
              new TelaFaturamentoPeriodo(controleNota);
-            
+            //Consultar faturamento por periodo cliente
+            else if(e.getSource() == botaoFaturClientPeriodo)
+             new TelaFaturamentoClientePeriodo(controleCliente); 
+            //Consultar faturamento por periodo cliente
+            else if(e.getSource() == botaoFaturClient)
+             new TelaFaturamentoCliente(controleCliente);   
         }
         catch(Exception exc){
 
