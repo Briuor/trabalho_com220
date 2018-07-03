@@ -104,14 +104,15 @@ public class ControleCliente {
     //--------VERIFICAR QUANTIDADE DE PRODUTOS NA NOTA < 10
     public void emitirNota(String cpf, Nota notaEmitida) {
         String saida = "";
+        notaEmitida.setValorTotalCompra();
         for (int i = 0; i < clientes.size(); i++) {
             //procura usuario pelo cpf e coloca nota emitida no array de notas dele
             if (clientes.get(i).getCpf().equals(cpf)) {
                 clientes.get(i).getNotas().add(notaEmitida);
             }
         }
+        saida += "NOTA cod" + notaEmitida.getCodigo() + "\n";
         for (int i = 0; i < notaEmitida.getListaProduto().size(); i++) { 
-            saida += "NOTA cod" + notaEmitida.getCodigo() + "\n";
             saida += "   CPF: " + cpf + "\n\n";
             //codigo nome preçoUnitário preçoComQuantidade
             saida += "   Código do produto: " + notaEmitida.getListaProduto().get(i).getCodigo()+"\n";

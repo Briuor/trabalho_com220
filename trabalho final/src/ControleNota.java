@@ -87,7 +87,7 @@ public class ControleNota {
             for (int j = 0; j < notas.get(i).getListaProduto().size(); j++) {
                 if (notas.get(i).getListaProduto().get(j).getCodigo() == codProduto) {
                     temProduto = true;
-                    fatTotal += notas.get(i).getListaProduto().get(j).getValorDeVenda();
+                    fatTotal = notas.get(i).getListaProduto().get(j).getValorDeVenda()*notas.get(i).getListaProduto().get(j).getQuantEstoque();
                 }
 
             }
@@ -105,6 +105,7 @@ public class ControleNota {
         double fatTotal = 0;
         for (int i = 0; i < notas.size(); i++) {
             if (notas.get(i).getDataEmissao().after(dataInicial) && notas.get(i).getDataEmissao().before(dataFinal)) {
+                notas.get(i).setValorTotalCompra();
                 fatTotal += notas.get(i).getValorTotalCompra();
             }
         }
