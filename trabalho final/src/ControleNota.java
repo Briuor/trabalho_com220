@@ -142,15 +142,18 @@ public class ControleNota {
     public void consultarMaisVendidos() {
         ArrayList<Integer> codProd = new ArrayList();
         ArrayList<Integer> quantidadeProd = new ArrayList();
-        String listaMaisVendidos = new String();
+        String listaMaisVendidos = "";
         int aux;
+        
+        System.out.println(codProd.size());
         
         for (int i = 0; i < notas.size(); i++) {
             for (int j = 0; j < notas.get(i).getListaProduto().size(); j++) {
-                for(int k = 0; k < codProd.size(); k++){
-                   if(codProd.get(k) != notas.get(i).getListaProduto().get(j).getCodigo()){
-                       quantidadeProd.set(k, notas.get(i).getListaProduto().get(j).getQuantEstoque());
-                   } else{
+                for(int k = 0; k <= codProd.size(); k++){
+                   if(codProd.get(k) == notas.get(i).getListaProduto().get(j).getCodigo()){
+                       quantidadeProd.set(k, quantidadeProd.get(k) + notas.get(i).getListaProduto().get(j).getQuantEstoque());
+                   }
+                   else{
                        codProd.add(notas.get(i).getListaProduto().get(j).getCodigo());
                        quantidadeProd.add(notas.get(i).getListaProduto().get(j).getQuantEstoque());
                    }
@@ -159,7 +162,7 @@ public class ControleNota {
         }
          for(int j = 0; j < codProd.size(); j++){
             for(int k = 0; k < codProd.size()-1; k++){
-                if(codProd.get(k) < codProd.get(k+1)){
+                if(quantidadeProd.get(k) < quantidadeProd.get(k+1)){
                     aux = codProd.get(k);
                     codProd.set(k, codProd.get(k+1));
                     codProd.set(k+1, codProd.get(k));
@@ -170,9 +173,12 @@ public class ControleNota {
                 }
            }
         }
-         for(int i = 0; i > codProd.size(); i++){
-            listaMaisVendidos += "Codigo do Produto: " + codProd.get(i) + "Vendeu: " + quantidadeProd.get(i) + "\n";
+         for(int i = 0; i < codProd.size(); i++){
+             if(i<10) listaMaisVendidos += "Codigo do Produto: " + codProd.get(i) + "Vendeu: " + quantidadeProd.get(i) + "\n";
          }
+         System.out.println(notas.size());
+         System.out.println(listaMaisVendidos);
+         
          JOptionPane.showMessageDialog(null, listaMaisVendidos);
     }
 

@@ -39,7 +39,7 @@ public class MenuPrincipal extends JFrame implements ActionListener{
         botaoFaturClientPeriodo = new JButton("Consultar Faturamento Cliente Por Periodo");
         botaoFaturPeriod = new JButton("Consultar Faturamento Periodo");
         botaoMaisVendidos = new JButton("Consultar Produtos Mais Vendidos");
-        botaoFaturClient = new JButton("Consultar Faturamento Clientes");
+        botaoFaturClient = new JButton("Consultar Faturamento Cliente");
         JPanel pConsultas = new JPanel();
         
         pConsultas.add(botaoFaturProd);
@@ -114,6 +114,7 @@ public class MenuPrincipal extends JFrame implements ActionListener{
             //Consultar faturamento por periodo cliente
             else if(e.getSource() == botaoFaturClient)
              new TelaFaturamentoCliente(controleCliente);   
+
         }
         catch(Exception exc){
 
