@@ -66,6 +66,7 @@ public class MenuPrincipal extends JFrame implements ActionListener{
         botaoEmitirNota.addActionListener(this);
         botaoConsultClient.addActionListener(this);
         botaoMaisVendidos.addActionListener(this);
+        botaoFaturProd.addActionListener(this);
         
         this.add(tabbedPane);
         this.pack();
@@ -93,6 +94,8 @@ public class MenuPrincipal extends JFrame implements ActionListener{
             
           //  else if(e.getSource() == botao10)
             //    controleNota.consultar10Vendidos();
+            else if(e.getSource() == botaoFaturProd)
+             new TelaFaturamentoProduto(controleNota);
         }
         catch(Exception exc){
 
