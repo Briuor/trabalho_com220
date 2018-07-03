@@ -132,14 +132,8 @@ public class ControleNota {
         
     }
 
-    /*
-    Coisa a se pensar: de que forma iremos consultar os 10 produtos mais vendidos?
-        Pela alteração quantidade no estoque talvez? Aparentemente viavel, mas tem muitos contras;
-        Fazendo FORs que percorrem todas as notas e todos os produtos somando os totais de cada um? Complicado e com problemas pra identificar
-            no final quais totais são de quais produtos
-        Alguma outra sugestão? Escrevam aqui que eu procuro fazer...
-     */
-    public void consultarMaisVendidos() {
+   
+    public void consultarMaisVendidos() {/*
         ArrayList<Integer> codProd = new ArrayList();
         ArrayList<Integer> quantidadeProd = new ArrayList();
         String listaMaisVendidos = new String();
@@ -173,14 +167,13 @@ public class ControleNota {
          for(int i = 0; i > codProd.size(); i++){
             listaMaisVendidos += "Codigo do Produto: " + codProd.get(i) + "Vendeu: " + quantidadeProd.get(i) + "\n";
          }
-         JOptionPane.showMessageDialog(null, listaMaisVendidos);
+         JOptionPane.showMessageDialog(null, listaMaisVendidos);*/
+        
+        //pegar o primeiro produto que achar e computar a quantidade dele
+        for (int i=0;i<notas.size();i++){
+            
+        }
     }
 
-    // //Emitir nota é o responsável pelas compras dos clientes
-    // Coisas para lembrar:
-    //     Ao emitir uma nota deve-se alterar a quantEstoque do produto de acordo com a compra;
-    //     Uma nota pode ter no máximo 10 tipos de produtos diferentes;
-    // public String emitirNota() {
-    //     return null;
-    // }
+    
 }
