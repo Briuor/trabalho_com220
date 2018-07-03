@@ -89,15 +89,18 @@ public class ControleCliente {
                         for (int k = 0; k < clientes.get(i).getNotas().get(j).getListaProduto().size(); k++) { // percorrendo o Array de produtos
                             saida += "   Código do produto: " + clientes.get(i).getNotas().get(j).getListaProduto().get(k).getCodigo() + "\n";
                             saida += "   Quantia: " + clientes.get(i).getNotas().get(j).getListaProduto().get(k).getQuantEstoque() + "\n";
-                            saida += "   Preço Unid (R$): " + clientes.get(i).getNotas().get(j).getListaProduto().get(k).getValorDeVenda() + "\n";
-                            saida += "   TOTAL: " + clientes.get(i).getNotas().get(j).getValorTotalCompra();
-                            saida += "\n\n";
+                            saida += "   Preço Unid (R$): " + clientes.get(i).getNotas().get(j).getListaProduto().get(k).getValorDeVenda() + "\n\n";
                         }
                     }
+                    saida += "   TOTAL: " + clientes.get(i).getNotas().get(j).getValorTotalCompra();
+                    saida += "\n\n";
+                    
                 }
-            } else {
-                JOptionPane.showMessageDialog(null, saida);
-            }
+                
+            } 
+            //else {
+            JOptionPane.showMessageDialog(null, saida);
+            //}
         }
     }
 
@@ -133,7 +136,7 @@ public class ControleCliente {
         double fatTotal = 0;
         boolean temCliente = false;
         for (int i = 0; i < clientes.size(); i++) {
-            if (clientes.get(i).getCpf() == cpf) {
+            if (clientes.get(i).getCpf().equals(cpf)) {
                 temCliente = true;
                 for (int j = 0; j < clientes.get(i).getNotas().size(); j++) {
                     clientes.get(i).getNotas().get(j).setValorTotalCompra();

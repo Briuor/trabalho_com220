@@ -25,10 +25,10 @@ import javax.swing.SpringLayout;
  *
  * @author Aluno
  */
-public class TelaFaturamentoPeriodo extends SpringUtilities implements ActionListener{
-     private ControleNota controleNota;
+public class TelaFaturamentoClientePeriodo  extends SpringUtilities implements ActionListener{
+    private ControleCliente controleCliente;
 
-    JFrame frameCadastroCliente = new JFrame("Consultar por Período");
+    JFrame frameCadastroCliente = new JFrame("Consultar Faturamento Cliente por Período");
     JPanel panelFormConsultaCliente = new JPanel(new SpringLayout());
     JPanel panelButtonCadastrar = new JPanel();
     JPanel mainPanel = new JPanel(new BorderLayout());
@@ -37,20 +37,22 @@ public class TelaFaturamentoPeriodo extends SpringUtilities implements ActionLis
     JTextField data1Text = new JTextField(25);
     JLabel data2 = new JLabel("Data Fim: ", JLabel.TRAILING);
     JTextField data2Text = new JTextField(25);
-   
+    
+    JLabel cpf = new JLabel("CPF: ", JLabel.TRAILING);
+    JTextField cpfText = new JTextField(25); 
     JButton createClient = new JButton("CONSULTAR");
 
-    public TelaFaturamentoPeriodo(ControleNota controleNota) {
-        this.controleNota = controleNota;
+    public TelaFaturamentoClientePeriodo(ControleCliente controleCliente) {
+        this.controleCliente = controleCliente;
         createClientWindow();
     }
     
     public void createClientWindow(){
         createClient.addActionListener(this);
         
-        panelFormConsultaCliente.add(data1);
-        data1.setLabelFor(data1Text);
-        panelFormConsultaCliente.add(data1Text);
+        panelFormConsultaCliente.add(cpf);
+        cpf.setLabelFor(cpfText);
+        panelFormConsultaCliente.add(cpfText);   
         
         panelFormConsultaCliente.add(data1);
         data1.setLabelFor(data1Text);
@@ -62,7 +64,7 @@ public class TelaFaturamentoPeriodo extends SpringUtilities implements ActionLis
         panelButtonCadastrar.add(createClient);
         
         SpringUtilities.makeCompactGrid(panelFormConsultaCliente,
-                                2, 2, //rows, cols
+                                3, 2, //rows, cols
                                 3, 3,        //initX, initY
                                 3, 3);       //xPad, yPad
         
@@ -77,6 +79,7 @@ public class TelaFaturamentoPeriodo extends SpringUtilities implements ActionLis
 
     @Override
     public void actionPerformed(ActionEvent ae) {
+        String cpf = cpfText.getText();
         String data1 = data1Text.getText();
         Date data1Date = null, data2Date = null;
         DateFormat formatter1 = new SimpleDateFormat("MM/dd/yy");
@@ -93,6 +96,6 @@ public class TelaFaturamentoPeriodo extends SpringUtilities implements ActionLis
         } catch (ParseException ex) {
             Logger.getLogger(TelaFaturamentoPeriodo.class.getName()).log(Level.SEVERE, null, ex);
         }
-        controleNota.consultaFatPeriodo(data1Date, data2Date);
+        controleCliente.consultaCompras(cpf, data1Date, data2Date);
     }
 }
