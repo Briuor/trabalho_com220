@@ -22,7 +22,13 @@ public final class TelaCadastroCliente extends SpringUtilities implements Action
     JPanel mainPanel = new JPanel(new BorderLayout());
    
     JLabel cpf = new JLabel("CPF: ", JLabel.TRAILING);
-    JTextField cpfText = new JTextField(25);
+    JLabel nome = new JLabel("Nome: ", JLabel.TRAILING);
+    JLabel email = new JLabel("Email: ", JLabel.TRAILING);
+    JLabel endereco = new JLabel("Endereco: ", JLabel.TRAILING);
+    private JTextField nomeText = new JTextField(25);
+    private JTextField emailText = new JTextField(25);
+    private JTextField enderecoText = new JTextField(25);
+    private JTextField cpfText = new JTextField(25);
     
     
     JButton createClient = new JButton("CADASTRAR");
@@ -34,15 +40,27 @@ public final class TelaCadastroCliente extends SpringUtilities implements Action
     
     public void createClientWindow(){
         createClient.addActionListener(this);
-            
-            panelFormCadastroCliente.add(cpf);
-            cpf.setLabelFor(cpfText);
-            panelFormCadastroCliente.add(cpfText);
+        
+        panelFormCadastroCliente.add(nome);
+        nome.setLabelFor(nomeText);
+        panelFormCadastroCliente.add(nomeText);
+        
+        panelFormCadastroCliente.add(email);
+        email.setLabelFor(emailText);
+        panelFormCadastroCliente.add(emailText);  
+        
+        panelFormCadastroCliente.add(endereco);
+        endereco.setLabelFor(enderecoText);
+        panelFormCadastroCliente.add(enderecoText);
+        
+        panelFormCadastroCliente.add(cpf);
+        cpf.setLabelFor(cpfText);
+        panelFormCadastroCliente.add(cpfText);
 
         panelButtonConsultar.add(createClient);
         
         SpringUtilities.makeCompactGrid(panelFormCadastroCliente,
-                                1, 2, //rows, cols
+                                4, 2, //rows, cols
                                 3, 3,        //initX, initY
                                 3, 3);       //xPad, yPad
         
@@ -57,8 +75,12 @@ public final class TelaCadastroCliente extends SpringUtilities implements Action
 
     @Override
     public void actionPerformed(ActionEvent ae) {
+        String nome = nomeText.getText();
+        String email = emailText.getText();
+        String endereco = enderecoText.getText();
         String cpf = cpfText.getText();
-        controleCliente.consultaCliente(cpf);
+        controleCliente.cadastraCliente(nome, endereco, email, cpf);
+        JOptionPane.showMessageDialog(null, "Cadastro Feito com Sucesso!");
     }
 
 }

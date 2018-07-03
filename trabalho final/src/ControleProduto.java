@@ -17,7 +17,6 @@ import java.io.ObjectOutputStream;
  */
 public class ControleProduto {
     private ArrayList <Produto> produtos;
-    public int 
 
     public ControleProduto(){
         this.produtos = new ArrayList<>();
