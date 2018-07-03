@@ -17,7 +17,7 @@ import java.io.ObjectOutputStream;
  */
 public class ControleProduto {
     private ArrayList <Produto> produtos;
-    public int auxCustoTotal;
+    public double quantCustoTotal = 0;
 
     public ControleProduto(){
         this.produtos = new ArrayList<>();
@@ -28,6 +28,10 @@ public class ControleProduto {
         catch(Exception exc){
             //System.console().writer().println("erro ao ler arquivo");
         }
+    }
+
+    public double getQuantCustoTotal() {
+        return quantCustoTotal;
     }
     
     //Função que serve tanto para adicionar um produto que antes não existia no sistema, quanto para incrementar sua quantidade no estoque caso ele ja exista.
@@ -40,6 +44,7 @@ public class ControleProduto {
                 if (produtos.get(i).getCodigo()==codigo){ 
                     int quantidadeEstoque = produtos.get(i).getQuantEstoque(); //Obtém-se a quantidade atual do estoque
                     produtos.get(i).setQuantEstoque(quantidadeEstoque+quantEstoque); //Acrescenta a quantidade desejada
+                    quantCustoTotal += quantEstoque*precoCompra;  //pega a quantidade necessaria para calcular o custo total
                     //---GRAVA ARQUIVO---
                     this.gravarProdutos();
                     //System.console().writer().println("produto " + codigo + "ja existente gravado");            
@@ -50,6 +55,7 @@ public class ControleProduto {
             //Segundo caso: adicionar um produto que antes não existia no sistema
             //System.console().writer().println("Produto "+ codigo +" Adicionado");
             produtos.add(new Produto(codigo, descricao, precoCompra, valorVenda, quantEstoque));
+            quantCustoTotal += quantEstoque*precoCompra;
             //---GRAVA ARQUIVO---
             this.gravarProdutos();
             //System.console().writer().println("produto " + codigo + " gravado");            
@@ -142,6 +148,9 @@ public class ControleProduto {
             FileInputStream arquivo = new FileInputStream("produtos.ser");
             ObjectInputStream in = new ObjectInputStream(arquivo);
             produtos = (ArrayList<Produto>) in.readObject();
+            for (int i=0;i<produtos.size();i++){
+                quantCustoTotal += produtos.get(i).getPrecoDeCompra()*produtos.get(i).getQuantEstoque();
+            }
             in.close();
         } catch (Exception ex) {
             produtos = new ArrayList<>();
