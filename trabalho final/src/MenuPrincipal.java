@@ -96,6 +96,9 @@ public class MenuPrincipal extends JFrame implements ActionListener{
             //    controleNota.consultar10Vendidos();
             else if(e.getSource() == botaoFaturProd)
              new TelaFaturamentoProduto(controleNota);
+            
+            else if(e.getSource() == botaoMaisVendidos)
+                controleNota.consultarMaisVendidos();
         }
         catch(Exception exc){
 
