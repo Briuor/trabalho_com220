@@ -22,7 +22,7 @@ import javax.swing.SpringLayout;
 public class TelaFaturamentoProduto extends SpringUtilities implements ActionListener{
       private ControleNota controleNota;
 
-    JFrame frameCadastroCliente = new JFrame("Consultar Cliente");
+    JFrame frameCadastroCliente = new JFrame("Consultar Produto por Periodo");
     JPanel panelFormConsultaCliente = new JPanel(new SpringLayout());
     JPanel panelButtonCadastrar = new JPanel();
     JPanel mainPanel = new JPanel(new BorderLayout());

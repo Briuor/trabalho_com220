@@ -152,11 +152,7 @@ public class TelaSelecaoProdutos extends SpringUtilities implements ActionListen
                 // GERA ID DA NOTA FISCAL IGUAL AO INDICE DELA NO ARRAY DE NOTAS DO CONTROLENOTAS
                 notaFiscal.setCodigo(controleNota.getNotas().size());     
                 //Calcula Valor total da compra
-                double valorTotal = 0;
-                for(int i = 0;i < notaFiscal.getListaProduto().size(); i++)
-                    valorTotal += notaFiscal.getListaProduto().get(i).getValorDeVenda();
-
-                notaFiscal.setValorTotalCompra(valorTotal);  
+                notaFiscal.setValorTotalCompra();  
 
                 notaFiscal.setDataEmissao(dataEmissao);
                 //passa cpf do cliente que emitiu nota e a nota emitida com todos os produtos
