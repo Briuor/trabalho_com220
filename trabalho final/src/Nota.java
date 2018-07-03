@@ -30,8 +30,12 @@ public class Nota implements Serializable{
         return valorTotalCompra;
     }
 
-    public void setValorTotalCompra(double valorTotalCompra) {
-        this.valorTotalCompra = valorTotalCompra;
+    public void setValorTotalCompra() {
+        double total = 0;
+        for (int i=0;i<listaProduto.size();i++){
+            total += listaProduto.get(i).getQuantEstoque()*listaProduto.get(i).getValorDeVenda();
+        }
+        this.valorTotalCompra = total;
     }
 
     public Date getDataEmissao() {

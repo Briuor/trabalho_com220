@@ -87,7 +87,7 @@ public class ControleNota {
             for (int j = 0; j < notas.get(i).getListaProduto().size(); j++) {
                 if (notas.get(i).getListaProduto().get(j).getCodigo() == codProduto) {
                     temProduto = true;
-                    fatTotal += notas.get(i).getListaProduto().get(j).getValorDeVenda();
+                    fatTotal = notas.get(i).getListaProduto().get(j).getValorDeVenda()*notas.get(i).getListaProduto().get(j).getQuantEstoque();
                 }
 
             }
@@ -105,6 +105,7 @@ public class ControleNota {
         double fatTotal = 0;
         for (int i = 0; i < notas.size(); i++) {
             if (notas.get(i).getDataEmissao().after(dataInicial) && notas.get(i).getDataEmissao().before(dataFinal)) {
+                notas.get(i).setValorTotalCompra();
                 fatTotal += notas.get(i).getValorTotalCompra();
             }
         }
@@ -117,7 +118,8 @@ public class ControleNota {
     public void consultaLucroLiquido(Date dataInicial, Date dataFinal) {
         String saida = "";
         double fatTotal = 0;
-        double custoTotal = 0;
+        double lucroLiquido = 0;
+        ControleProduto custoTotal = new ControleProduto();
         
         //achando o faturamento total
         for (int i = 0; i < notas.size(); i++) {
@@ -126,14 +128,8 @@ public class ControleNota {
             }
         }
         
-        //achando o custo total ????????
-        for (int i = 0; i < notas.size(); i++) {
-            if (notas.get(i).getDataEmissao().after(dataInicial) && notas.get(i).getDataEmissao().before(dataFinal)) {
-                for (int j = 0; j < notas.get(i).getListaProduto().size(); i++) {
-                    custoTotal += notas.get(i).getListaProduto().get(j).getPrecoDeCompra();
-                }
-            }
-        }
+        lucroLiquido = fatTotal - custoTotal.getQuantCustoTotal();
+        
     }
 
     /*

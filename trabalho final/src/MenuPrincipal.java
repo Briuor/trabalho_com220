@@ -67,6 +67,8 @@ public class MenuPrincipal extends JFrame implements ActionListener{
         botaoConsultClient.addActionListener(this);
         botaoMaisVendidos.addActionListener(this);
         botaoFaturProd.addActionListener(this);
+        botaoFaturPeriod.addActionListener(this);
+        
         
         this.add(tabbedPane);
         this.pack();
@@ -88,17 +90,25 @@ public class MenuPrincipal extends JFrame implements ActionListener{
             //Se clicar em Emitir Nota
             else if(e.getSource() == botaoEmitirNota)
              new TelaInsercaoCPF(controleCliente, controleProduto, controleNota);
-            
+            //Consulta clientes
             else if(e.getSource() == botaoConsultClient)
              new TelaConsultarCliente(controleCliente);
-            
-          //  else if(e.getSource() == botao10)
-            //    controleNota.consultar10Vendidos();
+            //Consulta mais vendidos
+            else if(e.getSource() == botaoMaisVendidos)
+                controleNota.consultarMaisVendidos();
+            //Consulta faturamento por produto
             else if(e.getSource() == botaoFaturProd)
              new TelaFaturamentoProduto(controleNota);
+<<<<<<< HEAD
             
             else if(e.getSource() == botaoMaisVendidos)
                 controleNota.consultarMaisVendidos();
+=======
+            //Consulta faturmaento pot periodo
+            else if(e.getSource() == botaoFaturPeriod)
+             new TelaFaturamentoPeriodo(controleNota);
+            
+>>>>>>> a2ae163ebaf8bc33ddb6da57bcae86998a36b90b
         }
         catch(Exception exc){
 

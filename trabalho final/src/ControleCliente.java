@@ -104,21 +104,22 @@ public class ControleCliente {
     //--------VERIFICAR QUANTIDADE DE PRODUTOS NA NOTA < 10
     public void emitirNota(String cpf, Nota notaEmitida) {
         String saida = "";
+        notaEmitida.setValorTotalCompra();
         for (int i = 0; i < clientes.size(); i++) {
             //procura usuario pelo cpf e coloca nota emitida no array de notas dele
             if (clientes.get(i).getCpf().equals(cpf)) {
                 clientes.get(i).getNotas().add(notaEmitida);
             }
         }
-        for (int i = 0; i < notaEmitida.getListaProduto().size(); i++) { 
-            saida += "NOTA cod" + notaEmitida.getCodigo() + "\n";
-            saida += "   CPF: " + cpf + "\n\n";
+        saida += "NOTA cod" + notaEmitida.getCodigo() + "\n";
+        saida += "   CPF: " + cpf + "\n\n";
+        for (int i = 0; i < notaEmitida.getListaProduto().size(); i++) {
             //codigo nome preçoUnitário preçoComQuantidade
-            saida += "   Código do produto: " + notaEmitida.getListaProduto().get(i).getCodigo()+"\n";
+            saida += "   Código do produto: " + notaEmitida.getListaProduto().get(i).getCodigo() + "\n";
             saida += "   Quantia: " + notaEmitida.getListaProduto().get(i).getQuantEstoque() + "\n";
             saida += "   Preço Unid (R$): " + notaEmitida.getListaProduto().get(i).getValorDeVenda() + "\n\n";
         }
-        saida += "   TOTAL: " + notaEmitida.getValorTotalCompra()+"\n";
+        saida += "   TOTAL: " + notaEmitida.getValorTotalCompra() + "\n";
         JOptionPane.showMessageDialog(null, saida);
         //Grava cliente com nota
         try {
@@ -135,6 +136,7 @@ public class ControleCliente {
             if (clientes.get(i).getCpf() == cpf) {
                 temCliente = true;
                 for (int j = 0; j < clientes.get(i).getNotas().size(); j++) {
+                    clientes.get(i).getNotas().get(j).setValorTotalCompra();
                     fatTotal += clientes.get(i).getNotas().get(j).getValorTotalCompra();
                 }
             }
